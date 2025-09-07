@@ -2,25 +2,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package so.car;
+package so.customer.company;
 
-import java.util.List;
+import domain.Company;
 import so.AbstractSO;
 
 /**
  *
  * @author user
  */
-public class GetCarBrandsSO extends AbstractSO{
-    List<String> brands;
-
+public class DeleteCompanySO extends AbstractSO {
     @Override
     protected void validate(Object o) throws Exception {
+        if(!(o instanceof Company)){
+            throw new Exception("Wrong object type used");
+        }
     }
 
     @Override
     protected void execute(Object o) throws Exception {
-        brands = dbBroker.getAllCarBrands();
+        dbBroker.deleteRow((Company) o);
     }
 
     @Override
@@ -29,9 +30,5 @@ public class GetCarBrandsSO extends AbstractSO{
 
     @Override
     protected void rollback() {
-    }
-
-    public List<String> getBrands() {
-        return brands;
     }
 }

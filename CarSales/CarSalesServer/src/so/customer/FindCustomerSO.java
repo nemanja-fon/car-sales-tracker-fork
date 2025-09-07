@@ -6,16 +6,19 @@ package so.customer;
 
 import domain.Company;
 import domain.Customer;
+import domain.DefaultDomainObject;
 import domain.Individual;
+import java.util.List;
 import so.AbstractSO;
-import so.customer.company.UpdateCompanySO;
-import so.customer.individual.UpdateIndividualSO;
+import so.customer.company.FindCompanySO;
+import so.customer.individual.FindIndividualSO;
 
 /**
  *
  * @author user
  */
-public class UpdateCustomerSO extends AbstractSO {
+public class FindCustomerSO extends AbstractSO {
+    private DefaultDomainObject customer;
     
     @Override
     protected void validate(Object o) throws Exception {
@@ -27,17 +30,19 @@ public class UpdateCustomerSO extends AbstractSO {
     @Override
     protected void execute(Object o) throws Exception {
         Customer c = (Customer) o;
-        
         if (c instanceof Individual) {
-            UpdateIndividualSO so = new UpdateIndividualSO();
+            FindIndividualSO so = new FindIndividualSO();
             so.executeSO((Individual) c);
+            customer = so.getIndividual();
         }
-        if (c instanceof Company) {
-            UpdateCompanySO so = new UpdateCompanySO();
+        else if (c instanceof Company) {
+            FindCompanySO so = new FindCompanySO();
             so.executeSO((Company) c);
+            customer = so.getCompany();
         }
-        
-        dbBroker.updateRow(c);
+        else{
+            throw new Exception("Sistem ne moze da nadje kupca");
+        }
     }
 
     @Override
@@ -47,5 +52,8 @@ public class UpdateCustomerSO extends AbstractSO {
     @Override
     protected void rollback() {
     }
-    
+
+    public DefaultDomainObject getCustomer() {
+        return customer;
+    }
 }

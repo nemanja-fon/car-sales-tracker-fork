@@ -16,7 +16,6 @@ public enum Operation {
     GET_ALL_CARS,
     GET_ALL_CUSTOMERS,
     GET_ALL_INVOICES,
-    GET_ALL_RESERVATIONS, 
     
     SEARCH_USERS,
     SEARCH_CARS,
@@ -27,15 +26,12 @@ public enum Operation {
     INSERT_CUSTOMER,
     INSERT_CAR,
     INSERT_INVOICE,
-    INSERT_RESERVATION,
     
     DELETE_USER,
     
     UPDATE_CUSTOMER,
     UPDATE_CAR,
     UPDATE_USER,
-    UPDATE_RESERVATION,
     
-    GET_ALL_CAR_BRANDS,
     CLOSE_CON,  
 }

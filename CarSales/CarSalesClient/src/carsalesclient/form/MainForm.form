@@ -126,35 +126,6 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Reservations"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Comic Sans MS" size="14" style="0"/>
-            </Property>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemAddNewReservation">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Comic Sans MS" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Add new reservation"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemAddNewReservationActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemSeeAllReservations">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Comic Sans MS" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="See all reservations"/>
-              </Properties>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="menuOptions">
           <Properties>
             <Property name="text" type="java.lang.String" value="Options"/>
@@ -293,11 +264,7 @@
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblMain" min="-2" pref="631" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnSell" min="-2" pref="164" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnReserve" min="-2" pref="164" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="btnSell" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="428" max="32767" attributes="0"/>
                   </Group>
@@ -309,10 +276,7 @@
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Component id="lblMain" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnSell" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="btnReserve" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="btnSell" min="-2" pref="41" max="-2" attributes="0"/>
                       <EmptySpace pref="561" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -333,14 +297,6 @@
                   <Font name="Comic Sans MS" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sell Car"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnReserve">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Comic Sans MS" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Reserve Car"/>
               </Properties>
             </Component>
           </SubComponents>

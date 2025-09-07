@@ -101,20 +101,6 @@ public class MainController {
             }
         });
         
-        mainForm.miAddNewReservationAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Coordinator.getInstance().openCarsTableForm(TableFormMode.RESERVE_CAR);
-            }
-        });
-        
-        mainForm.miSeeAllReservationsAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Coordinator.getInstance().openReservationsTableForm();
-            }
-        });
-        
         mainForm.miEnglishAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -154,13 +140,6 @@ public class MainController {
             }
         });
 
-        mainForm.btnReserveAddActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Coordinator.getInstance().openCarsTableForm(TableFormMode.RESERVE_CAR);
-            }
-        });
-        
         mainForm.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

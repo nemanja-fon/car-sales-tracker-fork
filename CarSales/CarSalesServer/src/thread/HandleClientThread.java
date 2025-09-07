@@ -15,7 +15,6 @@ import domain.Customer;
 import domain.DefaultDomainObject;
 import domain.Invoice;
 import domain.InvoiceItem;
-import domain.Reservation;
 import domain.User;
 import form.coordinator.Coordinator;
 import java.net.Socket;
@@ -74,9 +73,6 @@ public class HandleClientThread extends Thread{
                         case Operation.GET_ALL_INVOICES:
                             response.setResult(controller.getAllInvoices());
                             break;
-                        case Operation.GET_ALL_RESERVATIONS:
-                            response.setResult(controller.getAllReservations());
-                            break;
                         
                             
                             
@@ -108,9 +104,6 @@ public class HandleClientThread extends Thread{
                         case Operation.INSERT_INVOICE:
                             controller.insertInvoice((Invoice) request.getArgument());
                             break;
-                        case Operation.INSERT_RESERVATION:
-                            controller.insertReservation((Reservation) request.getArgument());
-                            break;
                         
                         
                         
@@ -128,14 +121,8 @@ public class HandleClientThread extends Thread{
                         case Operation.UPDATE_USER:
                             controller.updateUser((User) request.getArgument());
                             break;
-                        case Operation.UPDATE_RESERVATION:
-                            controller.updateReservation((Reservation) request.getArgument());
-                            break;
                         
                         
-                        case Operation.GET_ALL_CAR_BRANDS:
-                            response.setResult(controller.getAllCarBrands());
-                            break;
                         case Operation.CLOSE_CON:
                             controller.closeCon();
                             break;

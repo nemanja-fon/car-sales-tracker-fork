@@ -187,9 +187,6 @@ public class Car extends DefaultDomainObject implements  Serializable{
                     case "available":
                         s = CarStatus.AVAILABLE;
                         break;
-                    case "reserved":
-                        s = CarStatus.RESERVED;
-                        break;
                     case "sold":
                         s = CarStatus.SOLD;
                         break;

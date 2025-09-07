@@ -11,6 +11,5 @@ package carsalesclient.form.modes;
 public enum TableFormMode {
     SEE_ALL_ITEMS,
     SELECT_ITEM,
-    SEE_INVOICE_ITEMS,
-    RESERVE_CAR
+    SEE_INVOICE_ITEMS
 }

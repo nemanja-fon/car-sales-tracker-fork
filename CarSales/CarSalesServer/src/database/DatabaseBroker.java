@@ -45,6 +45,14 @@ public class DatabaseBroker {
         return ddo.returnList(rs);
     }
     
+    public DefaultDomainObject getOneByCondition(DefaultDomainObject ddo) throws SQLException{
+        String query = ddo.getGetByConditionQuery();
+        Connection connection = DatabaseConnection.getInstance().getConnection();
+        Statement s = connection.createStatement();
+        ResultSet rs = s.executeQuery(query);
+        return ddo.returnList(rs).getFirst();
+    }
+    
     public void insertRow(DefaultDomainObject ddo) throws SQLException{
         String query = ddo.getInsertQuery();
         Connection connection = DatabaseConnection.getInstance().getConnection();
@@ -86,38 +94,6 @@ public class DatabaseBroker {
         s.executeUpdate(query);
     }
     
-    public void insertCustomer(Customer customer) throws SQLException{
-        String query = "INSERT INTO customer (phone, email, address, type) values (?, ?, ?, ?)";
-        Connection connection = DatabaseConnection.getInstance().getConnection();
-        PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-        ps.setString(1, customer.getPhone());
-        ps.setString(2, customer.getEmail());
-        ps.setString(3, customer.getAddress());
-        String type = null;
-        if (customer instanceof Individual) {
-            type = "individual";
-        }
-        else if (customer instanceof Company){
-            type = "company";
-        }
-        ps.setString(4, type);
-        int affectedRows = ps.executeUpdate();
-        Long id = null;
-        if (affectedRows > 0) {
-            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    id = generatedKeys.getLong(1);
-                } else {
-                    System.out.println("No ID generated.");
-                }
-            }
-        } else {
-            System.out.println("Insert failed, no rows affected.");
-        }
-        customer.setIdCustomer(id);
-        insertRow(customer);
-    }
-    
     public void updateCustomer(Customer customer) throws SQLException{
         String query = "UPDATE customer SET phone = ?, email = ?, address = ?, type = ? WHERE id = ?";
         Connection connection = DatabaseConnection.getInstance().getConnection();
@@ -136,18 +112,6 @@ public class DatabaseBroker {
         ps.setLong(5, customer.getIdCustomer());
         ps.executeUpdate();
         updateRow(customer);
-    }
-    
-    public List<String> getAllCarBrands() throws SQLException {
-        String query = "select distinct brand from car order by brand";
-        Connection connection = DatabaseConnection.getInstance().getConnection();
-        Statement s = connection.createStatement();
-        ResultSet rs = s.executeQuery(query);
-        List<String> brands = new ArrayList<>();
-        while(rs.next()){
-            brands.add(rs.getString("brand"));
-        }
-        return brands;
     }
     
     public void closeCon(){

@@ -43,7 +43,6 @@ public class CarsTableForm extends javax.swing.JDialog {
         txtNote = new javax.swing.JTextField();
         btnSelect = new javax.swing.JButton();
         btnAddNew = new javax.swing.JButton();
-        btnReserve = new javax.swing.JButton();
         lblCustomer = new javax.swing.JLabel();
         txtCustomer = new javax.swing.JTextField();
         btnSelectCustomer = new javax.swing.JButton();
@@ -129,14 +128,6 @@ public class CarsTableForm extends javax.swing.JDialog {
             }
         });
 
-        btnReserve.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        btnReserve.setText("Reserve");
-        btnReserve.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReserveActionPerformed(evt);
-            }
-        });
-
         lblCustomer.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblCustomer.setText("Selected Customer:");
 
@@ -179,8 +170,6 @@ public class CarsTableForm extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnReserve, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnAddNew)
@@ -212,9 +201,7 @@ public class CarsTableForm extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAddNew, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnReserve, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -239,10 +226,6 @@ public class CarsTableForm extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddNewActionPerformed
 
-    private void btnReserveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReserveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnReserveActionPerformed
-
     private void txtCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCustomerActionPerformed
@@ -254,7 +237,6 @@ public class CarsTableForm extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddNew;
     private javax.swing.JButton btnDetails;
-    private javax.swing.JButton btnReserve;
     private javax.swing.JButton btnSelect;
     private javax.swing.JButton btnSelectCustomer;
     private javax.swing.JComboBox<String> cbBrand;
@@ -295,10 +277,6 @@ public class CarsTableForm extends javax.swing.JDialog {
         return lblNote;
     }
 
-    public JButton getBtnReserve() {
-        return btnReserve;
-    }
-
     public JLabel getLblCustomer() {
         return lblCustomer;
     }
@@ -313,10 +291,6 @@ public class CarsTableForm extends javax.swing.JDialog {
     
     public void btnSelectCustomerAddActionListener(ActionListener actionListener){
         btnSelectCustomer.addActionListener(actionListener);
-    }
-    
-    public void btnReserveAddActionListener(ActionListener actionListener){
-        btnReserve.addActionListener(actionListener);
     }
     
     public void cbBrandAddActionListener(ActionListener actionListener){

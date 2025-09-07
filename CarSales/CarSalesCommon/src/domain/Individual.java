@@ -110,7 +110,7 @@ public class Individual extends Customer implements Serializable{
 
     @Override
     public String getDeleteQuery() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "DELETE FROM customer WHERE id = "+idCustomer;
     }
-    
+
 }

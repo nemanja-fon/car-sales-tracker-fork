@@ -11,5 +11,5 @@ import java.io.Serializable;
  * @author user
  */
 public enum CarStatus implements Serializable{
-    AVAILABLE, SOLD, RESERVED
+    AVAILABLE, SOLD
 }

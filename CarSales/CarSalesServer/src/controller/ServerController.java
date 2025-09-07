@@ -6,11 +6,12 @@ package controller;
 
 import database.DatabaseBroker;
 import domain.Car;
+import domain.Company;
 import domain.Customer;
 import domain.DefaultDomainObject;
+import domain.Individual;
 import domain.Invoice;
 import domain.InvoiceItem;
-import domain.Reservation;
 import domain.User;
 import java.util.List;
 import java.sql.SQLException;
@@ -18,7 +19,6 @@ import java.util.ArrayList;
 import so.AbstractSO;
 import so.car.DeleteCarSO;
 import so.car.GetAllCarsSO;
-import so.car.GetCarBrandsSO;
 import so.car.InsertCarSO;
 import so.car.SearchCarsSO;
 import so.car.UpdateCarSO;
@@ -26,12 +26,10 @@ import so.customer.GetAllCustomersSO;
 import so.customer.InsertCustomerSO;
 import so.customer.SearchCustomersSO;
 import so.customer.UpdateCustomerSO;
+import so.customer.individual.InsertIndividualSO;
 import so.invoice.GetAllInvoicesSO;
 import so.invoice.InsertInvoiceSO;
 import so.invoice.SearchInvoicesSO;
-import so.reservation.GetAllReservationsSO;
-import so.reservation.InsertReservationSO;
-import so.reservation.UpdateReservationSO;
 import so.user.GetAllUsersSO;
 import so.user.InsertUserSO;
 import so.user.LoginUserSO;
@@ -107,12 +105,6 @@ public class ServerController {
         return so.getInvoices();
     }
 
-    public Object getAllReservations() throws Exception {
-        GetAllReservationsSO so = new GetAllReservationsSO();
-        so.executeSO(null);
-        return so.getReservations();
-    }
-
     
     
     
@@ -168,10 +160,6 @@ public class ServerController {
         so.executeSO(invoice);
     }
     
-    public void insertReservation(Reservation reservation) throws Exception {
-        InsertReservationSO so = new InsertReservationSO();
-        so.executeSO(reservation);
-    }
     
     
     
@@ -193,22 +181,12 @@ public class ServerController {
         so.executeSO(user);
     }
 
-    public void updateReservation(Reservation reservation) throws Exception{
-        UpdateReservationSO so = new UpdateReservationSO();
-        so.executeSO(reservation);
-    }
-
     
     
     
     
     
     
-    public List<String> getAllCarBrands() throws Exception{
-        GetCarBrandsSO so = new GetCarBrandsSO();
-        so.executeSO(null);
-        return so.getBrands();
-    }
     
     public void closeCon(){
         dbBroker.closeCon();

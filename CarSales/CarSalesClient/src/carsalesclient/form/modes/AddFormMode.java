@@ -11,6 +11,5 @@ package carsalesclient.form.modes;
 public enum AddFormMode {
     ADD_FORM,
     DETAILS_FORM,
-    UPDATE_FORM,
-    REALIZE_RESERVATION
+    UPDATE_FORM
 }

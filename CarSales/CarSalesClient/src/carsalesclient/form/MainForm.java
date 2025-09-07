@@ -41,7 +41,6 @@ public class MainForm extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblMain = new javax.swing.JLabel();
         btnSell = new javax.swing.JButton();
-        btnReserve = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuInvoice = new javax.swing.JMenu();
         menuItemCreateNewInvoice = new javax.swing.JMenuItem();
@@ -55,9 +54,6 @@ public class MainForm extends javax.swing.JFrame {
         menuCustomers = new javax.swing.JMenu();
         menuItemAddNewCustomer = new javax.swing.JMenuItem();
         menuItemSeeAllCustomers = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        menuItemAddNewReservation = new javax.swing.JMenuItem();
-        menuItemSeeAllReservations = new javax.swing.JMenuItem();
         menuOptions = new javax.swing.JMenu();
         menuItemLanguage = new javax.swing.JMenu();
         menuItemEnglish = new javax.swing.JCheckBoxMenuItem();
@@ -100,9 +96,6 @@ public class MainForm extends javax.swing.JFrame {
         btnSell.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         btnSell.setText("Sell Car");
 
-        btnReserve.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        btnReserve.setText("Reserve Car");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -111,10 +104,7 @@ public class MainForm extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblMain, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnSell, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnReserve, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnSell, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(428, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -123,9 +113,7 @@ public class MainForm extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addComponent(lblMain, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSell, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReserve, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnSell, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(561, Short.MAX_VALUE))
         );
 
@@ -213,24 +201,6 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(menuCustomers);
 
-        jMenu1.setText("Reservations");
-        jMenu1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-
-        menuItemAddNewReservation.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        menuItemAddNewReservation.setText("Add new reservation");
-        menuItemAddNewReservation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemAddNewReservationActionPerformed(evt);
-            }
-        });
-        jMenu1.add(menuItemAddNewReservation);
-
-        menuItemSeeAllReservations.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        menuItemSeeAllReservations.setText("See all reservations");
-        jMenu1.add(menuItemSeeAllReservations);
-
-        jMenuBar1.add(jMenu1);
-
         menuOptions.setText("Options");
         menuOptions.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
@@ -290,15 +260,9 @@ public class MainForm extends javax.swing.JFrame {
     private void menuItemCreateNewInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCreateNewInvoiceActionPerformed
     }//GEN-LAST:event_menuItemCreateNewInvoiceActionPerformed
 
-    private void menuItemAddNewReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAddNewReservationActionPerformed
-        
-    }//GEN-LAST:event_menuItemAddNewReservationActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnReserve;
     private javax.swing.JButton btnSell;
     private javax.swing.JLayeredPane jLayeredPane2;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -309,7 +273,6 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenu menuInvoice;
     private javax.swing.JMenuItem menuItemAddNewCar;
     private javax.swing.JMenuItem menuItemAddNewCustomer;
-    private javax.swing.JMenuItem menuItemAddNewReservation;
     private javax.swing.JMenuItem menuItemAddSalesman;
     private javax.swing.JMenuItem menuItemCreateNewInvoice;
     private javax.swing.JCheckBoxMenuItem menuItemEnglish;
@@ -318,7 +281,6 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemSeeAllCars;
     private javax.swing.JMenuItem menuItemSeeAllCustomers;
     private javax.swing.JMenuItem menuItemSeeAllInvoices;
-    private javax.swing.JMenuItem menuItemSeeAllReservations;
     private javax.swing.JMenuItem menuItemSeeAllSalesmen;
     private javax.swing.JCheckBoxMenuItem menuItemSerbian;
     private javax.swing.JMenu menuOptions;
@@ -363,14 +325,6 @@ public class MainForm extends javax.swing.JFrame {
     
     public void miSeeAllCustomersAddActionListener(ActionListener actionListener){
         menuItemSeeAllCustomers.addActionListener(actionListener);
-    }
-    
-    public void miAddNewReservationAddActionListener(ActionListener actionListener){
-        menuItemAddNewReservation.addActionListener(actionListener);
-    }
-    
-    public void miSeeAllReservationsAddActionListener(ActionListener actionListener){
-        menuItemSeeAllReservations.addActionListener(actionListener);
     }
     
     public JLabel getLblMain() {
@@ -449,19 +403,11 @@ public class MainForm extends javax.swing.JFrame {
         return lblImage;
     }
 
-    public JButton getBtnReserve() {
-        return btnReserve;
-    }
-
     public JButton getBtnSell() {
         return btnSell;
     }
     
     public void btnSellCarAddActionListener(ActionListener actionListener){
         btnSell.addActionListener(actionListener);
-    }
-    
-    public void btnReserveAddActionListener(ActionListener actionListener){
-        btnReserve.addActionListener(actionListener);
     }
 }

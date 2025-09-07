@@ -8,36 +8,33 @@ import domain.Company;
 import domain.Customer;
 import domain.Individual;
 import so.AbstractSO;
-import so.customer.company.InsertCompanySO;
-import so.customer.individual.InsertIndividualSO;
+import so.customer.company.DeleteCompanySO;
+import so.customer.individual.DeleteIndividualSO;
 
 /**
  *
  * @author user
  */
-public class InsertCustomerSO extends AbstractSO {
-    
+public class DeleteCustomerSO extends AbstractSO {
     @Override
     protected void validate(Object o) throws Exception {
         if(!(o instanceof Customer)){
             throw new Exception("Wrong object type used");
-}
+        }
     }
 
     @Override
     protected void execute(Object o) throws Exception {
-        Customer customer = (Customer) o;
-        Long idCustomer = dbBroker.insertRowAndGetId(customer);
-        
-        customer.setIdCustomer(idCustomer);
-        if (customer instanceof Individual) {
-            InsertIndividualSO so = new InsertIndividualSO();
-            so.executeSO((Individual) customer);
+        Customer c = (Customer) o;
+        if (c instanceof Individual) {
+            DeleteIndividualSO so = new DeleteIndividualSO();
+            so.executeSO((Individual) c);
         }
-        if (customer instanceof Company) {
-            InsertCompanySO so = new InsertCompanySO();
-            so.executeSO((Company) customer);
+        if (c instanceof Company) {
+            DeleteCompanySO so = new DeleteCompanySO();
+            so.executeSO((Company) c);
         }
+        dbBroker.deleteRow(c);
     }
 
     @Override
@@ -47,5 +44,4 @@ public class InsertCustomerSO extends AbstractSO {
     @Override
     protected void rollback() {
     }
-
 }

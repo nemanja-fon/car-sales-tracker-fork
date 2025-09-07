@@ -2,29 +2,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package so.reservation;
+package so.customer.individual;
 
-import domain.Reservation;
+import domain.Individual;
 import so.AbstractSO;
 
 /**
  *
  * @author user
  */
-public class UpdateReservationSO extends AbstractSO{
-
+public class UpdateIndividualSO extends AbstractSO {
     @Override
     protected void validate(Object o) throws Exception {
-        if (!(o instanceof Reservation)) {
-            throw new Exception("Wrong object type");
+        if(!(o instanceof Individual)){
+            throw new Exception("Wrong object type used");
         }
     }
 
     @Override
     protected void execute(Object o) throws Exception {
-        Reservation res = (Reservation) o;
-        dbBroker.updateRow(res.getCar());
-        dbBroker.updateRow(res);
+        dbBroker.updateRow((Individual) o);
     }
 
     @Override
@@ -34,5 +31,4 @@ public class UpdateReservationSO extends AbstractSO{
     @Override
     protected void rollback() {
     }
-    
 }

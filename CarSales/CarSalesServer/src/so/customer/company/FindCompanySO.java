@@ -2,29 +2,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package so.customer;
+package so.customer.company;
 
 import domain.Company;
-import domain.Customer;
 import domain.DefaultDomainObject;
-import domain.Individual;
-import java.util.List;
 import so.AbstractSO;
 
 /**
  *
  * @author user
  */
-public class GetAllCustomersSO extends AbstractSO {
-    private List<DefaultDomainObject> customers;
-
+public class FindCompanySO extends AbstractSO {
+    private DefaultDomainObject company;
+    
     @Override
     protected void validate(Object o) throws Exception {
+        if(!(o instanceof Company)){
+            throw new Exception("Wrong object type used");
+}
     }
 
     @Override
     protected void execute(Object o) throws Exception {
-        customers = dbBroker.getAll((Customer) o);
+        company = dbBroker.getOneByCondition((Company) o);
     }
 
     @Override
@@ -35,8 +35,7 @@ public class GetAllCustomersSO extends AbstractSO {
     protected void rollback() {
     }
 
-    public List<DefaultDomainObject> getCustomers() {
-        return customers;
+    public DefaultDomainObject getCompany() {
+        return company;
     }
-    
 }

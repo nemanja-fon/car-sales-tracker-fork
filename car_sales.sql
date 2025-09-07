@@ -41,10 +41,10 @@ CREATE TABLE `car` (
 
 insert  into `car`(`id`,`vin`,`brand`,`model`,`first_reg`,`mileage`,`category`,`fuel`,`engine_capacity`,`engine_power`,`gearbox`,`price`,`status`) values 
 (1,'1234567894','Audi','R8','2015-01-01',0,'','',0,0,'',50000,'AVAILABLE'),
-(2,'7532156985','Nissan','R34 GTR','2015-03-14',0,'','',0,0,'',100000,'AVAILABLE'),
+(2,'7532156985','Nissan','R34 GTR','2015-03-14',0,'','',0,0,'',100000,'SOLD'),
 (3,'9865321548','Seat','Ibiza','2011-01-01',420000,'Hatchback','Diesel',1.2,65,'Manual',5000,'SOLD'),
 (4,'8754123548','Audi','A4','2003-01-01',0,'','',0,0,'',10000,'AVAILABLE'),
-(5,'8654532695','Ford','Mustang','2016-01-01',0,'','',0,0,'',25000,'RESERVED'),
+(5,'8654532695','Ford','Mustang','2016-01-01',0,'','',0,0,'',25000,'AVAILABLE'),
 (6,'2546859351','Volkswagen','Golf 5','2008-01-01',0,'','',0,0,'',3000,'AVAILABLE'),
 (11,'7865923458','BMW','M4','2011-01-01',0,'','',0,0,'',20000,'SOLD'),
 (12,'AA71245965','Škoda','Superb','2021-01-01',150000,'Limousine/Salon','Petrol',1.5,90,'Automatic',10000,'AVAILABLE'),
@@ -54,11 +54,11 @@ insert  into `car`(`id`,`vin`,`brand`,`model`,`first_reg`,`mileage`,`category`,`
 (16,'UU45657899','Audi','A3','2013-01-01',0,'','',0,0,'',6000,'AVAILABLE'),
 (17,'6345YTE34V','Volkswagen','Passat','2020-01-01',220885,'Estate/Wagon','Petrol',2,150,'Automatic',16999,'AVAILABLE'),
 (18,'HDFTYE6534','Opel','Astra','2006-01-01',420000,'Estate/Wagon','Diesel',1.6,120,'Manual',2000,'AVAILABLE'),
-(19,'UYR7643789','Mercedes Benz','E 200','2009-01-01',235800,'Limousine/Salon','Petrol',2.2,136,'Manual',11000,'RESERVED'),
+(19,'UYR7643789','Mercedes Benz','E 200','2009-01-01',235800,'Limousine/Salon','Petrol',2.2,136,'Manual',11000,'SOLD'),
 (23,'789451542H','Volkswagen','Polo','2012-01-01',460000,'Hatchback','Diesel',1.2,65,'Manual',4000,'AVAILABLE'),
 (24,'7548965325684OO78','Skoda','Octavia','2023-01-01',20000,'Limousine/Salon','Petrol',1.4,150,'Manual',14000,'AVAILABLE'),
-(25,'789457516845963TT','Audi','A3','2011-01-01',130000,'Hatchback','Petrol',1.4,105,'Manual',7000,'RESERVED'),
-(26,'845697842TT647IO3','Nissan','Civic','2015-01-01',120000,'Hatchback','Petrol',1.6,150,'Manual',8500,'RESERVED');
+(25,'789457516845963TT','Audi','A3','2011-01-01',130000,'Hatchback','Petrol',1.4,105,'Manual',7000,'SOLD'),
+(26,'845697842TT647IO3','Nissan','Civic','2015-01-01',120000,'Hatchback','Petrol',1.6,150,'Manual',8500,'AVAILABLE');
 
 /*Table structure for table `company` */
 
@@ -159,7 +159,7 @@ CREATE TABLE `invoice` (
   KEY `costumer_fk` (`customer_id`),
   CONSTRAINT `costumer_fk` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
   CONSTRAINT `user_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `invoice` */
 
@@ -185,7 +185,8 @@ insert  into `invoice`(`id`,`invoice_num`,`date_of_issue`,`total_amount`,`user_i
 (26,19,'2025-08-08',100000,3,1),
 (27,20,'2025-08-10',5000,3,1),
 (28,21,'2025-08-10',62000,3,4),
-(29,22,'2025-08-10',8500,3,15);
+(29,22,'2025-08-10',8500,3,15),
+(30,23,'2025-08-21',100000,3,5);
 
 /*Table structure for table `invoice_item` */
 
@@ -235,37 +236,8 @@ insert  into `invoice_item`(`invoice_id`,`rb`,`price`,`note`,`car_id`) values
 (27,1,5000,'Vraćam je kući',3),
 (28,1,50000,'Sluzbeni',15),
 (28,2,12000,'',13),
-(29,1,8500,'',26);
-
-/*Table structure for table `reservation` */
-
-DROP TABLE IF EXISTS `reservation`;
-
-CREATE TABLE `reservation` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `reservation_date` date NOT NULL,
-  `reservation_deadline` date NOT NULL COMMENT 'date + 7 days',
-  `status` varchar(15) NOT NULL,
-  `note` varchar(100) DEFAULT NULL,
-  `car_id` bigint(20) unsigned NOT NULL,
-  `customer_id` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY (`id`,`car_id`,`customer_id`),
-  KEY `car_id` (`car_id`),
-  KEY `customer_id` (`customer_id`),
-  CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`),
-  CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
-/*Data for the table `reservation` */
-
-insert  into `reservation`(`id`,`reservation_date`,`reservation_deadline`,`status`,`note`,`car_id`,`customer_id`) values 
-(1,'2025-08-02','2025-08-09','CANCELED','',2,1),
-(2,'2025-08-06','2025-08-13','CANCELED','gospodin je na godisnjem',3,9),
-(3,'2025-08-08','2025-08-15','CANCELED','',1,1),
-(4,'2025-08-08','2025-08-15','ACTIVE','Za sluzbeni',19,20),
-(5,'2025-08-10','2025-08-17','ACTIVE','',5,3),
-(6,'2025-08-10','2025-08-17','ACTIVE','',25,6),
-(7,'2025-08-10','2025-08-17','REALIZED','',26,15);
+(29,1,8500,'',26),
+(30,1,100000,'',2);
 
 /*Table structure for table `user` */
 
@@ -287,9 +259,7 @@ insert  into `user`(`id`,`username`,`password`,`first_name`,`last_name`) values
 (2,'nemanja','nemanja','Nemanja','Đukić'),
 (3,'a','a','A','A'),
 (4,'teka','teka','Teodora','Đukić'),
-(5,'dudule','dudule','Dule','Kralj'),
-(6,'p','p','Pera','Perić'),
-(7,'a','a','Ana','Anić');
+(6,'p','p','Pera','Perić');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
