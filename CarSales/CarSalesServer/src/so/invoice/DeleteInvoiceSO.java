@@ -4,6 +4,9 @@
  */
 package so.invoice;
 
+import domain.CarStatus;
+import domain.Invoice;
+import domain.InvoiceItem;
 import so.AbstractSO;
 
 /**
@@ -11,5 +14,34 @@ import so.AbstractSO;
  * @author user
  */
 public class DeleteInvoiceSO extends AbstractSO {
+
+    @Override
+    protected void validate(Object o) throws Exception {
+        if(!(o instanceof Invoice)){
+            throw new Exception("Wrong object type used");
+        }
+    }
+
+    @Override
+    protected void execute(Object o) throws Exception {
+        Invoice invoice = (Invoice) o;
+        for (InvoiceItem invoiceItem : invoice.getInvoiceItems()) {
+            invoiceItem.getCar().setStatus(CarStatus.AVAILABLE);
+            dbBroker.updateRow(invoiceItem.getCar());
+            
+            dbBroker.deleteRow(invoiceItem);
+        }
+        dbBroker.deleteRow(invoice);
+    }
+
+    @Override
+    protected void commit() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    protected void rollback() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

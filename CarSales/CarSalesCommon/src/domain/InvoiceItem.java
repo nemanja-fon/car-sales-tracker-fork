@@ -10,8 +10,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -23,6 +21,11 @@ public class InvoiceItem extends DefaultDomainObject implements  Serializable{
     private double price;
     private String note;
     private Car car;
+    private Status status;
+
+    public enum Status{
+        ADDED, DELETED, UPDATED
+    }
 
     public InvoiceItem() {
     }
@@ -75,6 +78,14 @@ public class InvoiceItem extends DefaultDomainObject implements  Serializable{
         this.car = car;
     }
     
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+    
     @Override
     public String toString() {
         return car.getBrand() + " " + car.getModel() + ", note: " + note + ", price = " +price+"\n";
@@ -125,12 +136,7 @@ public class InvoiceItem extends DefaultDomainObject implements  Serializable{
 
     @Override
     public String getDeleteQuery() {
-        try {
-            throw new Exception("Can't delete invoice item");
-        } catch (Exception ex) {
-            Logger.getLogger(InvoiceItem.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        return "DELETE FROM invoice_item WHERE invoice_id = " + invoiceId;
     }
 
 }
