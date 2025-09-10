@@ -27,13 +27,6 @@ public class FindIndividualSO extends AbstractSO {
         individual = dbBroker.getOneByCondition((Individual) o);
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
 
     public DefaultDomainObject getIndividual() {
         return individual;

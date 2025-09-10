@@ -25,13 +25,6 @@ public class GetAllUsersSO extends  AbstractSO{
         users = dbBroker.getAllOrdered(new User());
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
 
     public List<DefaultDomainObject> getUsers() {
         return users;

@@ -48,6 +48,7 @@ public class AddUserForm extends javax.swing.JDialog {
         btnEdit = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -104,6 +105,9 @@ public class AddUserForm extends javax.swing.JDialog {
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("ADD NEW SALESPERSON");
 
+        btnDelete.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnDelete.setText("Delete");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,10 +130,12 @@ public class AddUserForm extends javax.swing.JDialog {
                         .addComponent(txtLastName))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnEnableChanges)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                         .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -167,12 +173,13 @@ public class AddUserForm extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEnableChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -190,6 +197,7 @@ public class AddUserForm extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnEnableChanges;
     private javax.swing.JButton btnSave;
@@ -249,6 +257,12 @@ public class AddUserForm extends javax.swing.JDialog {
     public JLabel getLblTitle() {
         return lblTitle;
     }
+
+    public JButton getBtnDelete() {
+        return btnDelete;
+    }
+    
+    
     
     public void btnEnableChangesAddActionListener(ActionListener actionListener){
         btnEnableChanges.addActionListener(actionListener);
@@ -260,6 +274,10 @@ public class AddUserForm extends javax.swing.JDialog {
     
     public void btnSaveAddActionListener(ActionListener actionListener){
         btnSave.addActionListener(actionListener);
+    }
+    
+    public void btnDeleteAddActionListener(ActionListener actionListener){
+        btnDelete.addActionListener(actionListener);
     }
     
     public void btnCancelAddActionListener(ActionListener actionListener){

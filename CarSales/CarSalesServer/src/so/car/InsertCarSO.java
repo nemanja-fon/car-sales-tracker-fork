@@ -5,6 +5,8 @@
 package so.car;
 
 import domain.Car;
+import domain.DefaultDomainObject;
+import java.util.List;
 import so.AbstractSO;
 
 /**
@@ -22,15 +24,15 @@ public class InsertCarSO extends AbstractSO {
 
     @Override
     protected void execute(Object o) throws Exception {
-        dbBroker.insertRow((Car) o);
+        Car car = (Car) o;
+        List<DefaultDomainObject> cars = dbBroker.getAll(new Car());
+        for (DefaultDomainObject c : cars) {
+            if (car.equals((Car) c)) {
+                throw new Exception("Car already exists in db");
+            }
+        }
+        dbBroker.insertRow(car);
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
     
 }

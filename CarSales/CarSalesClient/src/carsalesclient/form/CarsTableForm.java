@@ -43,14 +43,14 @@ public class CarsTableForm extends javax.swing.JDialog {
         txtNote = new javax.swing.JTextField();
         btnSelect = new javax.swing.JButton();
         btnAddNew = new javax.swing.JButton();
-        lblCustomer = new javax.swing.JLabel();
-        txtCustomer = new javax.swing.JTextField();
-        btnSelectCustomer = new javax.swing.JButton();
+        btnEnableChanges = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
+        txtPrice = new javax.swing.JTextField();
+        lblPrice = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("All Cars");
 
-        tblCars.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         tblCars.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -77,21 +77,22 @@ public class CarsTableForm extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tblCars.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         tblCars.setRowHeight(30);
         tblCars.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         tblCars.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tblCars);
 
-        btnDetails.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         btnDetails.setText("Details");
+        btnDetails.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         btnDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDetailsActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel1.setText("Select brand:");
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
         cbBrand.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         cbBrand.addActionListener(new java.awt.event.ActionListener() {
@@ -100,11 +101,11 @@ public class CarsTableForm extends javax.swing.JDialog {
             }
         });
 
-        lblNote.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblNote.setText("Note:");
+        lblNote.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
-        txtNote.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         txtNote.setEnabled(false);
+        txtNote.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         txtNote.setName("price"); // NOI18N
         txtNote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,41 +113,49 @@ public class CarsTableForm extends javax.swing.JDialog {
             }
         });
 
-        btnSelect.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         btnSelect.setText("SELECT");
+        btnSelect.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         btnSelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSelectActionPerformed(evt);
             }
         });
 
-        btnAddNew.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         btnAddNew.setText("Add New");
+        btnAddNew.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         btnAddNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddNewActionPerformed(evt);
             }
         });
 
-        lblCustomer.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        lblCustomer.setText("Selected Customer:");
-
-        txtCustomer.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtCustomer.setEnabled(false);
-        txtCustomer.setName("price"); // NOI18N
-        txtCustomer.addActionListener(new java.awt.event.ActionListener() {
+        btnEnableChanges.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnEnableChanges.setText("Enable changes");
+        btnEnableChanges.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCustomerActionPerformed(evt);
+                btnEnableChangesActionPerformed(evt);
             }
         });
 
-        btnSelectCustomer.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        btnSelectCustomer.setText("Select Customer");
-        btnSelectCustomer.addActionListener(new java.awt.event.ActionListener() {
+        btnEdit.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSelectCustomerActionPerformed(evt);
+                btnEditActionPerformed(evt);
             }
         });
+
+        txtPrice.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtPrice.setEnabled(false);
+        txtPrice.setName("price"); // NOI18N
+        txtPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPriceActionPerformed(evt);
+            }
+        });
+
+        lblPrice.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblPrice.setText("Price:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,29 +165,33 @@ public class CarsTableForm extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                        .addComponent(lblCustomer)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSelectCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 491, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblNote)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtNote, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnAddNew)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblNote)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblPrice)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtNote, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnEnableChanges))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -187,21 +200,25 @@ public class CarsTableForm extends javax.swing.JDialog {
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCustomer)
-                    .addComponent(txtCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSelectCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNote)
                     .addComponent(txtNote, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPrice)
+                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAddNew, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAddNew, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEnableChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -226,27 +243,32 @@ public class CarsTableForm extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddNewActionPerformed
 
-    private void txtCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerActionPerformed
+    private void btnEnableChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnableChangesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCustomerActionPerformed
+    }//GEN-LAST:event_btnEnableChangesActionPerformed
 
-    private void btnSelectCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectCustomerActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSelectCustomerActionPerformed
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPriceActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddNew;
     private javax.swing.JButton btnDetails;
+    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnEnableChanges;
     private javax.swing.JButton btnSelect;
-    private javax.swing.JButton btnSelectCustomer;
     private javax.swing.JComboBox<String> cbBrand;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblCustomer;
     private javax.swing.JLabel lblNote;
+    private javax.swing.JLabel lblPrice;
     private javax.swing.JTable tblCars;
-    private javax.swing.JTextField txtCustomer;
     private javax.swing.JTextField txtNote;
+    private javax.swing.JTextField txtPrice;
     // End of variables declaration//GEN-END:variables
 
     public JTable getTblCars() {
@@ -277,28 +299,38 @@ public class CarsTableForm extends javax.swing.JDialog {
         return lblNote;
     }
 
-    public JLabel getLblCustomer() {
-        return lblCustomer;
+    public JButton getBtnEnableChanges() {
+        return btnEnableChanges;
     }
 
-    public JTextField getTxtCustomer() {
-        return txtCustomer;
+    public JButton getBtnEdit() {
+        return btnEdit;
     }
 
-    public JButton getBtnSelectCustomer() {
-        return btnSelectCustomer;
+    public JLabel getLblPrice() {
+        return lblPrice;
+    }
+
+    public JTextField getTxtPrice() {
+        return txtPrice;
     }
     
-    public void btnSelectCustomerAddActionListener(ActionListener actionListener){
-        btnSelectCustomer.addActionListener(actionListener);
-    }
+    
     
     public void cbBrandAddActionListener(ActionListener actionListener){
         cbBrand.addActionListener(actionListener);
     }
     
+    public void btnEnableChangesAddActionListener(ActionListener actionListener){
+        btnEnableChanges.addActionListener(actionListener);
+    }
+    
     public void btnDetailsAddActionListener(ActionListener actionListener){
         btnDetails.addActionListener(actionListener);
+    }
+    
+    public void btnEditAddActionListener(ActionListener actionListener){
+        btnEdit.addActionListener(actionListener);
     }
     
     public void btnAddNewAddActionListener(ActionListener actionListener){

@@ -7,6 +7,7 @@ package carsalesclient.form.form_coordinator;
 import carsalesclient.form.AddCarForm;
 import carsalesclient.form.AddCustomerForm;
 import carsalesclient.form.AddInvoiceForm;
+import carsalesclient.form.AddShiftForm;
 import carsalesclient.form.AddUserForm;
 import carsalesclient.form.CarsTableForm;
 import carsalesclient.form.CustomersTableForm;
@@ -14,6 +15,8 @@ import carsalesclient.form.InvoiceItemsTableForm;
 import carsalesclient.form.InvoicesTableForm;
 import carsalesclient.form.LoginForm;
 import carsalesclient.form.MainForm;
+import carsalesclient.form.ShiftsTableForm;
+import carsalesclient.form.StartShiftForm;
 import carsalesclient.form.UsersTableForm;
 import carsalesclient.form.constants.CoordinatorParamConsts;
 import carsalesclient.form.form_controllers.CarController;
@@ -24,8 +27,11 @@ import carsalesclient.form.form_controllers.InvoiceController;
 import carsalesclient.form.form_controllers.SeeAllCarsController;
 import carsalesclient.form.form_controllers.SeeAllCustomersController;
 import carsalesclient.form.form_controllers.SeeAllInvoicesController;
+import carsalesclient.form.form_controllers.SeeAllShiftsController;
 import carsalesclient.form.form_controllers.SeeAllUsersController;
 import carsalesclient.form.form_controllers.SeeItemsController;
+import carsalesclient.form.form_controllers.ShiftController;
+import carsalesclient.form.form_controllers.StartShiftController;
 import carsalesclient.form.form_controllers.UserController;
 import carsalesclient.form.modes.AddFormMode;
 import carsalesclient.form.modes.TableFormMode;
@@ -96,9 +102,9 @@ public class Coordinator {
         controller.openForm(formMode);
     }
 
-    public void openUsersTableForm() {
+    public void openUsersTableForm(TableFormMode formMode) {
         SeeAllUsersController controller = new SeeAllUsersController(new UsersTableForm(mainController.getMainForm(), true));
-        controller.openForm();
+        controller.openForm(formMode);
     }
 
     public void openAddCarForm(AddFormMode formMode) {
@@ -119,5 +125,20 @@ public class Coordinator {
     public void openCustomersTableForm(TableFormMode formMode) {
         SeeAllCustomersController controller = new SeeAllCustomersController(new CustomersTableForm(mainController.getMainForm(), true));
         controller.openForm(formMode);
+    }
+
+    public void openAddShiftForm(AddFormMode addFormMode) {
+        ShiftController controller = new ShiftController(new AddShiftForm(mainController.getMainForm(), true));
+        controller.openForm(addFormMode);
+    }
+
+    public void openShiftsTableForm(TableFormMode tableFormMode) {
+        SeeAllShiftsController controller = new SeeAllShiftsController(new ShiftsTableForm(mainController.getMainForm(), true));
+        controller.openForm(tableFormMode);
+    }
+
+    public void openStartShiftForm() {
+        StartShiftController controller = new StartShiftController(new StartShiftForm(mainController.getMainForm(), true));
+        controller.openForm();
     }
 }

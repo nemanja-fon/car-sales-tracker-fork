@@ -78,6 +78,7 @@ public class AddCustomerForm extends javax.swing.JDialog {
         btnCancel = new javax.swing.JButton();
         btnEnableChanges = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -367,6 +368,14 @@ public class AddCustomerForm extends javax.swing.JDialog {
             }
         });
 
+        btnDelete.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelButtonsLayout = new javax.swing.GroupLayout(panelButtons);
         panelButtons.setLayout(panelButtonsLayout);
         panelButtonsLayout.setHorizontalGroup(
@@ -379,6 +388,8 @@ public class AddCustomerForm extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnCancel)
                 .addContainerGap())
         );
@@ -390,7 +401,8 @@ public class AddCustomerForm extends javax.swing.JDialog {
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEnableChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -450,8 +462,13 @@ public class AddCustomerForm extends javax.swing.JDialog {
 
     }//GEN-LAST:event_cbCustomerTypeActionPerformed
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnEnableChanges;
     private javax.swing.JButton btnSave;
@@ -656,6 +673,11 @@ public class AddCustomerForm extends javax.swing.JDialog {
     public JPanel getPanelButtons() {
         return panelButtons;
     }
+
+    public JButton getBtnDelete() {
+        return btnDelete;
+    }
+    
     
     
     
@@ -669,6 +691,10 @@ public class AddCustomerForm extends javax.swing.JDialog {
     
     public void btnEditAddActionListener(ActionListener actionListener){
         btnEdit.addActionListener(actionListener);
+    }
+    
+    public void btnDeleteAddActionListener(ActionListener actionListener){
+        btnDelete.addActionListener(actionListener);
     }
     
     public void btnCancelAddActionListener(ActionListener actionListener){

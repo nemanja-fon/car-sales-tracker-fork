@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -89,7 +90,32 @@ public class InvoiceItem extends DefaultDomainObject implements  Serializable{
     @Override
     public String toString() {
         return car.getBrand() + " " + car.getModel() + ", note: " + note + ", price = " +price+"\n";
+        }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final InvoiceItem other = (InvoiceItem) obj;
+        if (this.num != other.num) {
+            return false;
+        }
+        return Objects.equals(this.invoiceId, other.invoiceId);
+    }
+    
 
     @Override
     public List<DefaultDomainObject> returnList(ResultSet rs) throws SQLException {
@@ -120,7 +146,6 @@ public class InvoiceItem extends DefaultDomainObject implements  Serializable{
 
     @Override
     public String getInsertQuery() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return "INSERT INTO invoice_item "+
                 "(invoice_id, rb, price, note, car_id) "+
                 "values("+ invoiceId + ", "+ num + ", " + price + ", '" + note + "', "+ car.getIdCar() +")";
@@ -128,15 +153,14 @@ public class InvoiceItem extends DefaultDomainObject implements  Serializable{
 
     @Override
     public String getUpdateQuery() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return "UPDATE invoice_item "+
                 "SET price = "+ price +", note = '"+ note +"', car_id = "+ car.getIdCar() +" "+
-                "WHERE invoice_id = "+ invoiceId + "AND rb = " + num;
+                "WHERE invoice_id = "+ invoiceId + " AND rb = " + num;
     }
 
     @Override
     public String getDeleteQuery() {
-        return "DELETE FROM invoice_item WHERE invoice_id = " + invoiceId;
+        return "DELETE FROM invoice_item WHERE invoice_id = " + invoiceId +" AND rb = " + num;
     }
 
 }

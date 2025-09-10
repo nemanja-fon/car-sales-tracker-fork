@@ -17,15 +17,21 @@ import javax.swing.table.AbstractTableModel;
  * @author user
  */
 public class InvoiceItemsTableModel extends AbstractTableModel{
-    private List<InvoiceItem> items;
+    private final List<InvoiceItem> items;
 
     public InvoiceItemsTableModel(List<InvoiceItem> items) {
         this.items = items;
     }
+    
+    private List<InvoiceItem> getVisibleItems() {
+        return items.stream()
+                .filter(i -> i.getStatus() == null || i.getStatus() != InvoiceItem.Status.DELETED)
+                .toList();
+    }
 
     @Override
     public int getRowCount() {
-        return items.size();
+        return getVisibleItems().size();
     }
 
     @Override
@@ -37,15 +43,15 @@ public class InvoiceItemsTableModel extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return items.get(rowIndex).getNum();
+                return getVisibleItems().get(rowIndex).getNum();
             case 1:
-                return items.get(rowIndex).getCar().getBrand();
+                return getVisibleItems().get(rowIndex).getCar().getBrand();
             case 2:
-                return items.get(rowIndex).getCar().getModel();
+                return getVisibleItems().get(rowIndex).getCar().getModel();
             case 3:
-                return items.get(rowIndex).getNote();
+                return getVisibleItems().get(rowIndex).getNote();
             case 4:
-                return items.get(rowIndex).getPrice()  + " €";
+                return getVisibleItems().get(rowIndex).getPrice()  + " €";
             default:
                 break;
         }
@@ -64,7 +70,7 @@ public class InvoiceItemsTableModel extends AbstractTableModel{
     }
     
     public InvoiceItem getInvoiceItemAt(int rowId){
-        return items.get(rowId);
+        return getVisibleItems().get(rowId);
     }
 
     public List<InvoiceItem> getInvoiceItems() {
@@ -77,5 +83,10 @@ public class InvoiceItemsTableModel extends AbstractTableModel{
             items.get(i).setNum(i+1);
         }
         fireTableRowsDeleted(items.size() - 1, items.size() - 1);
+    }
+
+    public void deleteInvoiceItem(int rowId) {
+        getVisibleItems().get(rowId).setStatus(InvoiceItem.Status.DELETED);
+        fireTableDataChanged();
     }
 }

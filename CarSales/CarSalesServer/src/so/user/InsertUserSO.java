@@ -33,12 +33,5 @@ public class InsertUserSO extends AbstractSO {
         dbBroker.insertRow((User) o);
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
     
 }

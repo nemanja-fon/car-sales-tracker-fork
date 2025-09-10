@@ -58,13 +58,6 @@ public class SearchInvoicesSO extends AbstractSO {
         }
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
 
     public List<DefaultDomainObject> getInvoices() {
         return invoices;

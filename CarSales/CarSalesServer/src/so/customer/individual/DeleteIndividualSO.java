@@ -21,14 +21,8 @@ public class DeleteIndividualSO extends AbstractSO {
 
     @Override
     protected void execute(Object o) throws Exception {
-        dbBroker.deleteRow((Individual) o);
-    }
-
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
+        Individual i = (Individual) o;
+        dbBroker.deleteRow(i);
+        dbBroker.deleteRow(i.getCustomer());
     }
 }

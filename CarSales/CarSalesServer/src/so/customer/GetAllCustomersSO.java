@@ -27,14 +27,6 @@ public class GetAllCustomersSO extends AbstractSO {
         customers = dbBroker.getAll((Customer) o);
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
-
     public List<DefaultDomainObject> getCustomers() {
         return customers;
     }

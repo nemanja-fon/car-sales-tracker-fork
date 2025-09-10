@@ -27,9 +27,6 @@ public class InsertCustomerSO extends AbstractSO {
     @Override
     protected void execute(Object o) throws Exception {
         Customer customer = (Customer) o;
-        Long idCustomer = dbBroker.insertRowAndGetId(customer);
-        
-        customer.setIdCustomer(idCustomer);
         if (customer instanceof Individual) {
             InsertIndividualSO so = new InsertIndividualSO();
             so.executeSO((Individual) customer);
@@ -38,14 +35,6 @@ public class InsertCustomerSO extends AbstractSO {
             InsertCompanySO so = new InsertCompanySO();
             so.executeSO((Company) customer);
         }
-    }
-
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
     }
 
 }

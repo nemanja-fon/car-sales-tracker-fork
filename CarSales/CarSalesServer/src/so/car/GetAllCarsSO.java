@@ -25,13 +25,6 @@ public class GetAllCarsSO extends AbstractSO{
         cars = dbBroker.getAllOrdered(new Car());
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
 
     public List<DefaultDomainObject> getCars() {
         return cars;

@@ -60,12 +60,7 @@ public class ServerThread  extends Thread{
     }
 
     public void logout(HandleClientThread client) {
-//        try {
-            clients.remove(client);
-//            client.getSocket().close();
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
+        clients.remove(client);
     }
     
 }

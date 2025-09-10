@@ -5,6 +5,7 @@
 package so;
 
 import database.DatabaseBroker;
+import java.sql.SQLException;
 
 
 /**
@@ -23,7 +24,7 @@ public abstract class AbstractSO {
             validate(o);
             try {
                 execute(o);
-//                commit();
+                commit();
             } catch (Exception e) {
                 rollback();
                 throw e;
@@ -37,7 +38,11 @@ public abstract class AbstractSO {
 
     protected abstract void execute(Object o) throws Exception;
 
-    protected abstract void commit();
+    protected void commit() throws SQLException {
+        dbBroker.commit();
+    }
 
-    protected abstract void rollback();
+    protected void rollback() throws SQLException {
+        dbBroker.rollback();
+    }
 }

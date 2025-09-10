@@ -94,28 +94,17 @@ public class DatabaseBroker {
         s.executeUpdate(query);
     }
     
-    public void updateCustomer(Customer customer) throws SQLException{
-        String query = "UPDATE customer SET phone = ?, email = ?, address = ?, type = ? WHERE id = ?";
-        Connection connection = DatabaseConnection.getInstance().getConnection();
-        PreparedStatement ps = connection.prepareStatement(query);
-        ps.setString(1, customer.getPhone());
-        ps.setString(2, customer.getEmail());
-        ps.setString(3, customer.getAddress());
-        String type = null;
-        if (customer instanceof Individual) {
-            type = "individual";
-        }
-        else if (customer instanceof Company){
-            type = "company";
-        }
-        ps.setString(4, type);
-        ps.setLong(5, customer.getIdCustomer());
-        ps.executeUpdate();
-        updateRow(customer);
-    }
     
     public void closeCon(){
         DatabaseConnection.getInstance().closeConnection();
+    }
+
+    public void commit() throws SQLException {
+        DatabaseConnection.getInstance().getConnection().commit();
+    }
+
+    public void rollback() throws SQLException {
+        DatabaseConnection.getInstance().getConnection().rollback();
     }
 
 }

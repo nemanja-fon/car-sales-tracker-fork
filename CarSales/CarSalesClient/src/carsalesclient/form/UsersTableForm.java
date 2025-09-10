@@ -40,6 +40,8 @@ public class UsersTableForm extends javax.swing.JDialog {
         btnSearch = new javax.swing.JButton();
         btnDetails = new javax.swing.JButton();
         btnShowAll = new javax.swing.JButton();
+        btnSelect = new javax.swing.JButton();
+        btnAddNew = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("All Users");
@@ -96,6 +98,22 @@ public class UsersTableForm extends javax.swing.JDialog {
             }
         });
 
+        btnSelect.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnSelect.setText("Select");
+        btnSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectActionPerformed(evt);
+            }
+        });
+
+        btnAddNew.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnAddNew.setText("Add New");
+        btnAddNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddNewActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,6 +132,10 @@ public class UsersTableForm extends javax.swing.JDialog {
                         .addComponent(btnShowAll, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAddNew, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -129,7 +151,10 @@ public class UsersTableForm extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(btnDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddNew, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -149,9 +174,19 @@ public class UsersTableForm extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnShowAllActionPerformed
 
+    private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSelectActionPerformed
+
+    private void btnAddNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNewActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddNewActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddNew;
     private javax.swing.JButton btnDetails;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnSelect;
     private javax.swing.JButton btnShowAll;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -178,9 +213,24 @@ public class UsersTableForm extends javax.swing.JDialog {
     public JButton getBtnShowAll() {
         return btnShowAll;
     }
+
+    public JButton getBtnAddNew() {
+        return btnAddNew;
+    }
+
+    public JButton getBtnSelect() {
+        return btnSelect;
+    }
     
     
     
+    
+    public void btnSelectAddActionListener(ActionListener actionListener){
+        btnSelect.addActionListener(actionListener);
+    }
+    public void btnAddNewAddActionListener(ActionListener actionListener){
+        btnAddNew.addActionListener(actionListener);
+    }
     public void btnSearchAddActionListener(ActionListener actionListener){
         btnSearch.addActionListener(actionListener);
     }

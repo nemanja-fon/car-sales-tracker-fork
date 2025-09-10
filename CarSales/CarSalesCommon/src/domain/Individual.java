@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,9 +22,11 @@ public class Individual extends Customer implements Serializable{
     private String lastName;
     private String jmbg;
     private String idCardNumber;
+    private Customer customer;
 
     public Individual(Long idCustomer, String firstName, String lastName, String jmbg, String idCardNumber, String phone, String email, String address) {
         super(idCustomer, phone, email, address);
+        this.customer = new Customer();
         this.firstName = firstName;
         this.lastName = lastName;
         this.jmbg = jmbg;
@@ -64,6 +67,47 @@ public class Individual extends Customer implements Serializable{
     public void setIdCardNumber(String idCardNumber) {
         this.idCardNumber = idCardNumber;
     }
+    
+    public Customer getCustomer() {
+        customer.setIdCustomer(idCustomer);
+        customer.setPhone(phone);
+        customer.setEmail(email);
+        customer.setAddress(address);
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Individual other = (Individual) obj;
+        if (!Objects.equals(this.idCustomer, other.idCustomer)) {
+            return false;
+        }
+        if (!Objects.equals(this.jmbg, other.jmbg)) {
+            return false;
+        }
+        return Objects.equals(this.idCardNumber, other.idCardNumber);
+    }
+    
+    
     
     @Override
     public List<DefaultDomainObject> returnList(ResultSet rs) throws SQLException {
@@ -110,7 +154,7 @@ public class Individual extends Customer implements Serializable{
 
     @Override
     public String getDeleteQuery() {
-        return "DELETE FROM customer WHERE id = "+idCustomer;
+        return "DELETE FROM individual WHERE id = "+idCustomer;
     }
 
 }

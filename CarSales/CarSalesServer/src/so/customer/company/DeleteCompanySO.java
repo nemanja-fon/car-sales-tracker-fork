@@ -21,14 +21,9 @@ public class DeleteCompanySO extends AbstractSO {
 
     @Override
     protected void execute(Object o) throws Exception {
-        dbBroker.deleteRow((Company) o);
+        Company com = (Company) o;
+        dbBroker.deleteRow(com);
+        dbBroker.deleteRow(com.getCustomer());
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
 }

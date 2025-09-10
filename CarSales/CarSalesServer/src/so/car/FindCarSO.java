@@ -27,13 +27,6 @@ public class FindCarSO extends AbstractSO {
         car = dbBroker.getOneByCondition((Car) o);
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
 
     public DefaultDomainObject getCar() {
         return car;

@@ -28,13 +28,6 @@ public class FindUserSO extends AbstractSO {
         user = dbBroker.getOneByCondition((User) o);
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
 
     public DefaultDomainObject getUsers() {
         return user;

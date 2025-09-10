@@ -24,11 +24,4 @@ public class DeleteUserSO extends AbstractSO {
         dbBroker.deleteRow((User) o);
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
 }

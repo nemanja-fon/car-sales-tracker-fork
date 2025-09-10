@@ -34,14 +34,5 @@ public class DeleteCustomerSO extends AbstractSO {
             DeleteCompanySO so = new DeleteCompanySO();
             so.executeSO((Company) c);
         }
-        dbBroker.deleteRow(c);
-    }
-
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
     }
 }

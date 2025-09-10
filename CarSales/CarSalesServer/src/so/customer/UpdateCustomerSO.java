@@ -36,16 +36,5 @@ public class UpdateCustomerSO extends AbstractSO {
             UpdateCompanySO so = new UpdateCompanySO();
             so.executeSO((Company) c);
         }
-        
-        dbBroker.updateRow(c);
     }
-
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
-    
 }

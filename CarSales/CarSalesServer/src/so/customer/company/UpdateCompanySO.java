@@ -21,14 +21,8 @@ public class UpdateCompanySO extends AbstractSO {
 
     @Override
     protected void execute(Object o) throws Exception {
-        dbBroker.updateRow((Company) o);
-    }
-
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
+        Company com = (Company) o;
+        dbBroker.updateRow(com.getCustomer());
+        dbBroker.updateRow(com);
     }
 }

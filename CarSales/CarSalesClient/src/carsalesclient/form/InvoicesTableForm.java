@@ -41,6 +41,7 @@ public class InvoicesTableForm extends javax.swing.JDialog {
         btnCancel = new javax.swing.JButton();
         txtDate = new javax.swing.JTextField();
         btnGeneratePdf = new javax.swing.JButton();
+        btnDetails = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -80,6 +81,9 @@ public class InvoicesTableForm extends javax.swing.JDialog {
         btnGeneratePdf.setText("Generate PDF");
         btnGeneratePdf.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
+        btnDetails.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnDetails.setText("Details");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,6 +103,8 @@ public class InvoicesTableForm extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnGeneratePdf)
                         .addGap(18, 18, 18)
+                        .addComponent(btnDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -115,7 +121,8 @@ public class InvoicesTableForm extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGeneratePdf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGeneratePdf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -125,6 +132,7 @@ public class InvoicesTableForm extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnDetails;
     private javax.swing.JButton btnGeneratePdf;
     private com.github.lgooddatepicker.components.DatePicker datePicker;
     private javax.swing.JLabel jLabel1;
@@ -149,6 +157,14 @@ public class InvoicesTableForm extends javax.swing.JDialog {
         return btnCancel;
     }
 
+    public JButton getBtnDetails() {
+        return btnDetails;
+    }
+    
+    public void btnDetailsAddActionListener(ActionListener actionListener){
+        btnDetails.addActionListener(actionListener);
+    }
+    
     public void btnCancelAddActionListener(ActionListener actionListener){
         btnCancel.addActionListener(actionListener);
     }

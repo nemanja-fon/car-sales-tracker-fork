@@ -142,6 +142,26 @@ public class CustomerController {
                     }
                 } catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        });
+        
+        customerForm.btnDeleteAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                delete();
+            }
+
+            private void delete() {
+                Customer customer = (Customer) Coordinator.getInstance().getParam(CoordinatorParamConsts.CUSTOMER_DETAILS);
+                try {
+                    ClientController.getInstance().deleteCustomer(customer);
+                    JOptionPane.showMessageDialog(customerForm, "System successfully deleted customer");
+                    customerForm.dispose();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(customerForm, "System couldn't delete selected customer");
+                    e.printStackTrace();
                 }
             }
         });
@@ -201,6 +221,7 @@ public class CustomerController {
                 customerForm.getPanelButtons().setVisible(false);
                 customerForm.getBtnEnableChanges().setVisible(false);
                 customerForm.getBtnEdit().setVisible(false);
+                customerForm.getBtnDelete().setVisible(false);
                 customerForm.getBtnSave().setVisible(true);
                 customerForm.getBtnSave().setEnabled(true);
                 break;
@@ -258,6 +279,8 @@ public class CustomerController {
                 customerForm.getPanelButtons().setVisible(true);
                 customerForm.getBtnEnableChanges().setVisible(true);
                 customerForm.getBtnEnableChanges().setEnabled(true);
+                customerForm.getBtnDelete().setVisible(true);
+                customerForm.getBtnDelete().setEnabled(true);
                 customerForm.getBtnEdit().setVisible(true);
                 customerForm.getBtnEdit().setEnabled(false);
                 customerForm.getBtnSave().setVisible(false);
@@ -297,6 +320,8 @@ public class CustomerController {
                 customerForm.getPanelButtons().setVisible(true);
                 customerForm.getBtnEnableChanges().setVisible(true);
                 customerForm.getBtnEnableChanges().setEnabled(false);
+                customerForm.getBtnDelete().setVisible(true);
+                customerForm.getBtnDelete().setEnabled(false);
                 customerForm.getBtnEdit().setEnabled(true);
                 break;
                 
@@ -342,7 +367,14 @@ public class CustomerController {
                 empty = true;
             }
             else{
-                customerForm.getTxtEmailI().setBorder(new MetalBorders.TextFieldBorder());
+                if (customerForm.getTxtEmailI().getText().contains("@")) {
+                    customerForm.getTxtEmailI().setBorder(new MetalBorders.TextFieldBorder());
+                }
+                else{
+                    customerForm.getTxtEmailI().setBorder(new TitledBorder(border, "Invalid email", 0, 0, font, Color.RED));
+                    empty = true;
+                }
+                
             }
             
             if(customerForm.getTxtAddressI().getText().isBlank()){
@@ -400,7 +432,13 @@ public class CustomerController {
                 empty = true;
             }
             else{
-                customerForm.getTxtEmailC().setBorder(new MetalBorders.TextFieldBorder());
+                if (customerForm.getTxtEmailC().getText().contains("@")) {
+                    customerForm.getTxtEmailC().setBorder(new MetalBorders.TextFieldBorder());
+                }
+                else{
+                    customerForm.getTxtEmailC().setBorder(new TitledBorder(border, "Invalid email", 0, 0, font, Color.RED));
+                    empty = true;
+                }
             }
             
             if(customerForm.getTxtAddressC().getText().isBlank()){

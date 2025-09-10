@@ -1,0 +1,28 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package so.shift;
+
+import domain.Shift;
+import so.AbstractSO;
+
+/**
+ *
+ * @author user
+ */
+public class UpdateShiftSO extends AbstractSO {
+
+    @Override
+    protected void validate(Object o) throws Exception {
+        if(!(o instanceof Shift)){
+            throw new Exception("Wrong object type used");
+        }
+    }
+
+    @Override
+    protected void execute(Object o) throws Exception {
+        dbBroker.updateRow((Shift) o);
+    }
+    
+}

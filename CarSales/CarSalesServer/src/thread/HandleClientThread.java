@@ -12,9 +12,9 @@ import communication.Sender;
 import controller.ServerController;
 import domain.Car;
 import domain.Customer;
-import domain.DefaultDomainObject;
 import domain.Invoice;
-import domain.InvoiceItem;
+import domain.SalesmanShift;
+import domain.Shift;
 import domain.User;
 import form.coordinator.Coordinator;
 import java.net.Socket;
@@ -73,6 +73,9 @@ public class HandleClientThread extends Thread{
                         case Operation.GET_ALL_INVOICES:
                             response.setResult(controller.getAllInvoices());
                             break;
+                        case Operation.GET_ALL_SHIFTS:
+                            response.setResult(controller.getAllShifts());
+                            break;
                         
                             
                             
@@ -89,6 +92,9 @@ public class HandleClientThread extends Thread{
                         case Operation.SEARCH_INVOICES:
                             response.setResult(controller.searchInvoices((Invoice) request.getArgument()));
                             break;
+                        case Operation.SEARCH_SHIFTS:
+                            response.setResult(controller.searchShifts((Shift) request.getArgument()));
+                            break;
                         
                         
                         
@@ -104,10 +110,29 @@ public class HandleClientThread extends Thread{
                         case Operation.INSERT_INVOICE:
                             controller.insertInvoice((Invoice) request.getArgument());
                             break;
+                        case Operation.INSERT_SHIFT:
+                            controller.insertShift((Shift) request.getArgument());
+                            break;
+                        case Operation.INSERT_SALESMAN_SHIFT:
+                            controller.insertSalesmanShift((SalesmanShift) request.getArgument());
+                            break;
                         
                         
                         
                         case Operation.DELETE_USER:
+                            controller.deleteUser((User) request.getArgument());
+                            break;
+                        case Operation.DELETE_CAR:
+                            controller.deleteCar((Car) request.getArgument());
+                            break;
+                        case Operation.DELETE_CUSTOMER:
+                            controller.deleteCustomer((Customer) request.getArgument());
+                            break;
+                        case Operation.DELETE_INVOICE:
+                            controller.deleteInvoice((Invoice) request.getArgument());
+                            break;
+                        case Operation.DELETE_SHIFT:
+                            controller.deleteShift((Shift) request.getArgument());
                             break;
                         
                         
@@ -120,6 +145,12 @@ public class HandleClientThread extends Thread{
                             break;
                         case Operation.UPDATE_USER:
                             controller.updateUser((User) request.getArgument());
+                            break;
+                        case Operation.UPDATE_INVOICE:
+                            controller.updateInvoice((Invoice) request.getArgument());
+                            break;
+                        case Operation.UPDATE_SHIFT:
+                            controller.updateShift((Shift) request.getArgument());
                             break;
                         
                         

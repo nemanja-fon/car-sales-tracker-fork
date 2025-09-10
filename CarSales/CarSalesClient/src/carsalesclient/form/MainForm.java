@@ -41,6 +41,7 @@ public class MainForm extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblMain = new javax.swing.JLabel();
         btnSell = new javax.swing.JButton();
+        btnStartShift = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuInvoice = new javax.swing.JMenu();
         menuItemCreateNewInvoice = new javax.swing.JMenuItem();
@@ -54,6 +55,9 @@ public class MainForm extends javax.swing.JFrame {
         menuCustomers = new javax.swing.JMenu();
         menuItemAddNewCustomer = new javax.swing.JMenuItem();
         menuItemSeeAllCustomers = new javax.swing.JMenuItem();
+        menuShifts = new javax.swing.JMenu();
+        menuItemAddNewShift = new javax.swing.JMenuItem();
+        menuItemSeeAllShifts = new javax.swing.JMenuItem();
         menuOptions = new javax.swing.JMenu();
         menuItemLanguage = new javax.swing.JMenu();
         menuItemEnglish = new javax.swing.JCheckBoxMenuItem();
@@ -96,15 +100,23 @@ public class MainForm extends javax.swing.JFrame {
         btnSell.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         btnSell.setText("Sell Car");
 
+        btnStartShift.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnStartShift.setText("Start Shift");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMain, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSell, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(lblMain, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(btnStartShift, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSell, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(428, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -113,8 +125,10 @@ public class MainForm extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addComponent(lblMain, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnSell, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(561, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSell, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnStartShift, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(562, Short.MAX_VALUE))
         );
 
         jLayeredPane2.add(jPanel2);
@@ -201,6 +215,29 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(menuCustomers);
 
+        menuShifts.setText("Shifts");
+        menuShifts.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+
+        menuItemAddNewShift.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        menuItemAddNewShift.setText("Add new shift");
+        menuItemAddNewShift.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemAddNewShiftActionPerformed(evt);
+            }
+        });
+        menuShifts.add(menuItemAddNewShift);
+
+        menuItemSeeAllShifts.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        menuItemSeeAllShifts.setText("See all shifts");
+        menuItemSeeAllShifts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemSeeAllShiftsActionPerformed(evt);
+            }
+        });
+        menuShifts.add(menuItemSeeAllShifts);
+
+        jMenuBar1.add(menuShifts);
+
         menuOptions.setText("Options");
         menuOptions.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
@@ -260,8 +297,17 @@ public class MainForm extends javax.swing.JFrame {
     private void menuItemCreateNewInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCreateNewInvoiceActionPerformed
     }//GEN-LAST:event_menuItemCreateNewInvoiceActionPerformed
 
+    private void menuItemAddNewShiftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAddNewShiftActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemAddNewShiftActionPerformed
+
+    private void menuItemSeeAllShiftsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSeeAllShiftsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemSeeAllShiftsActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSell;
+    private javax.swing.JButton btnStartShift;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
@@ -273,6 +319,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenu menuInvoice;
     private javax.swing.JMenuItem menuItemAddNewCar;
     private javax.swing.JMenuItem menuItemAddNewCustomer;
+    private javax.swing.JMenuItem menuItemAddNewShift;
     private javax.swing.JMenuItem menuItemAddSalesman;
     private javax.swing.JMenuItem menuItemCreateNewInvoice;
     private javax.swing.JCheckBoxMenuItem menuItemEnglish;
@@ -282,9 +329,11 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemSeeAllCustomers;
     private javax.swing.JMenuItem menuItemSeeAllInvoices;
     private javax.swing.JMenuItem menuItemSeeAllSalesmen;
+    private javax.swing.JMenuItem menuItemSeeAllShifts;
     private javax.swing.JCheckBoxMenuItem menuItemSerbian;
     private javax.swing.JMenu menuOptions;
     private javax.swing.JMenu menuSalespersons;
+    private javax.swing.JMenu menuShifts;
     // End of variables declaration//GEN-END:variables
 
     public JCheckBoxMenuItem getMenuItemEnglish() {
@@ -325,6 +374,18 @@ public class MainForm extends javax.swing.JFrame {
     
     public void miSeeAllCustomersAddActionListener(ActionListener actionListener){
         menuItemSeeAllCustomers.addActionListener(actionListener);
+    }
+    
+    public void miAddNewShiftAddActionListener(ActionListener actionListener){
+        menuItemAddNewShift.addActionListener(actionListener);
+    }
+    
+    public void miSeeAllShiftsAddActionListener(ActionListener actionListener){
+        menuItemSeeAllShifts.addActionListener(actionListener);
+    }
+    
+    public void miLogoutAddActionListener(ActionListener actionListener){
+        menuItemLogOut.addActionListener(actionListener);
     }
     
     public JLabel getLblMain() {
@@ -407,7 +468,29 @@ public class MainForm extends javax.swing.JFrame {
         return btnSell;
     }
     
+    public JButton getBtnStartShift() {
+        return btnStartShift;
+    }
+    
+    public void btnStartShiftAddActionListener(ActionListener actionListener){
+        btnStartShift.addActionListener(actionListener);
+    }
+    
     public void btnSellCarAddActionListener(ActionListener actionListener){
         btnSell.addActionListener(actionListener);
     }
+
+    public JMenuItem getMenuItemAddNewShift() {
+        return menuItemAddNewShift;
+    }
+
+    public JMenuItem getMenuItemSeeAllShifts() {
+        return menuItemSeeAllShifts;
+    }
+
+    public JMenu getMenuShifts() {
+        return menuShifts;
+    }
+    
+    
 }

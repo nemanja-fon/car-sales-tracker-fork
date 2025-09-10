@@ -21,14 +21,8 @@ public class UpdateIndividualSO extends AbstractSO {
 
     @Override
     protected void execute(Object o) throws Exception {
-        dbBroker.updateRow((Individual) o);
-    }
-
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
+        Individual i = (Individual) o;
+        dbBroker.updateRow(i.getCustomer());
+        dbBroker.updateRow(i);
     }
 }

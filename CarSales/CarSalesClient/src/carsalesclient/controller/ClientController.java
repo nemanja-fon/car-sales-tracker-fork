@@ -12,6 +12,8 @@ import communication.Sender;
 import domain.Car;
 import domain.Customer;
 import domain.Invoice;
+import domain.SalesmanShift;
+import domain.Shift;
 import domain.User;
 import java.io.IOException;
 import java.net.Socket;
@@ -107,8 +109,21 @@ public class ClientController {
             throw response.getException();
         }
     }
+    
+    public List<Shift> getAllShifts() throws Exception {
+        Request request = new Request(Operation.GET_ALL_SHIFTS, null);
+        sender.send(request);
+        
+        Response response = (Response) receiver.receive();
+        if(response.getException() == null){
+            return (List<Shift>) response.getResult();
+        }
+        else{
+            throw response.getException();
+        }
+    }
 
-   
+    
 
     
     
@@ -167,7 +182,18 @@ public class ClientController {
         }
     }
     
-    
+    public List<Shift> searchShifts(Shift shift) throws Exception {
+        Request request = new Request(Operation.SEARCH_SHIFTS, shift);
+        sender.send(request);
+        
+        Response response = (Response) receiver.receive();
+        if(response.getException() == null){
+            return (List<Shift>) response.getResult();
+        }
+        else{
+            throw response.getException();
+        }
+    }
     
     
     
@@ -213,6 +239,26 @@ public class ClientController {
             throw response.getException();
         }
     }
+    
+    public void insertShift(Shift shift) throws Exception {
+        Request request = new Request(Operation.INSERT_SHIFT, shift);
+        sender.send(request);
+        
+        Response response = (Response) receiver.receive();
+        if(response.getException() != null){
+            throw response.getException();
+        }
+    }
+
+    public void insertSalesmanShift(SalesmanShift salesmanShift) throws Exception {
+        Request request = new Request(Operation.INSERT_SALESMAN_SHIFT, salesmanShift);
+        sender.send(request);
+        
+        Response response = (Response) receiver.receive();
+        if(response.getException() != null){
+            throw response.getException();
+        }
+    }
 
    
 
@@ -237,8 +283,46 @@ public class ClientController {
         }
     }
     
+    public void deleteCar(Car car) throws Exception {
+        Request request = new Request(Operation.DELETE_CAR, car);
+        sender.send(request);
+        
+        Response response = (Response) receiver.receive();
+        if(response.getException() != null){
+            throw response.getException();
+        }
+    }
     
+    public void deleteCustomer(Customer customer) throws Exception {
+        Request request = new Request(Operation.DELETE_CUSTOMER, customer);
+        sender.send(request);
+        
+        Response response = (Response) receiver.receive();
+        if(response.getException() != null){
+            throw response.getException();
+        }
+    }
     
+    public void deleteInvoice(Invoice invoice) throws Exception {
+        Request request = new Request(Operation.DELETE_INVOICE, invoice);
+        sender.send(request);
+        
+        Response response = (Response) receiver.receive();
+        if(response.getException() != null){
+            throw response.getException();
+        }
+    }
+
+
+    public void deleteShift(Shift shift) throws Exception {
+        Request request = new Request(Operation.DELETE_SHIFT, shift);
+        sender.send(request);
+        
+        Response response = (Response) receiver.receive();
+        if(response.getException() != null){
+            throw response.getException();
+        }
+    }
     
     
     
@@ -275,7 +359,25 @@ public class ClientController {
         }
     }
     
+    public void updateInvoice(Invoice invoice) throws Exception {
+        Request request = new Request(Operation.UPDATE_INVOICE, invoice);
+        sender.send(request);
+        
+        Response response = (Response) receiver.receive();
+        if(response.getException() != null){
+            throw response.getException();
+        }
+    }
 
+    public void updateShift(Shift shift) throws Exception {
+        Request request = new Request(Operation.UPDATE_SHIFT, shift);
+        sender.send(request);
+        
+        Response response = (Response) receiver.receive();
+        if(response.getException() != null){
+            throw response.getException();
+        }
+    }
     
     
     

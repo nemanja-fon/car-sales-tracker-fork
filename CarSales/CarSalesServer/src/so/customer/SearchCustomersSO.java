@@ -28,14 +28,6 @@ public class SearchCustomersSO extends AbstractSO {
         customers = dbBroker.getByCondition((Customer) o);
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
-
     public List<DefaultDomainObject> getCustomers() {
         return customers;
     }

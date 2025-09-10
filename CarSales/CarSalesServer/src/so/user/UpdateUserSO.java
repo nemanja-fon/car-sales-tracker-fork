@@ -25,12 +25,5 @@ public class UpdateUserSO extends AbstractSO {
         dbBroker.updateRow((User) o);
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
     
 }

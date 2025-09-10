@@ -49,7 +49,6 @@ public class SeeAllCarsController {
     
     public void openForm(TableFormMode formMode){
         prepareForm(formMode);
-        fillTable(null);
         carsTableForm.setVisible(true);
     }
     
@@ -104,14 +103,23 @@ public class SeeAllCarsController {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(!e.getValueIsAdjusting()){
-                    int rowId = carsTableForm.getTblCars().getSelectedRow();
-                    if(rowId != -1){
-                        Car car = ((CarsTableModel) carsTableForm.getTblCars().getModel()).getCarAt(rowId);
-                        carsTableForm.getTxtNote().setEnabled(true);
+                    if (Coordinator.getInstance().getParam(CoordinatorParamConsts.INVOICE_ITEM_DETAILS) == null) {
+                        int rowId = carsTableForm.getTblCars().getSelectedRow();
+                        if(rowId != -1){
+                            Car car = ((CarsTableModel) carsTableForm.getTblCars().getModel()).getCarAt(rowId);
+                            carsTableForm.getTxtNote().setEnabled(true);
+                        }
+                        else{
+                            carsTableForm.getTxtNote().setEnabled(false);
+                            carsTableForm.getTxtNote().setText("");
+                        }
                     }
                     else{
-                        carsTableForm.getTxtNote().setEnabled(false);
-                        carsTableForm.getTxtNote().setText("");
+                        int rowId = carsTableForm.getTblCars().getSelectedRow();
+                        if(rowId != -1){
+                            Car car = ((CarsTableModel) carsTableForm.getTblCars().getModel()).getCarAt(rowId);
+                            carsTableForm.getTxtPrice().setText(Double.toString(car.getPrice()));
+                        }
                     }
                 }
             }
@@ -143,7 +151,7 @@ public class SeeAllCarsController {
                     return;
                 }
                 String note = carsTableForm.getTxtNote().getText();
-                List<InvoiceItem> allSelectedItems = (List<InvoiceItem>) Coordinator.getInstance().getParam(CoordinatorParamConsts.SELECTED_CAR);
+                List<InvoiceItem> allSelectedItems = (List<InvoiceItem>) Coordinator.getInstance().getParam(CoordinatorParamConsts.SELECTED_ITEMS);
                 if (allSelectedItems != null) {
                     for (InvoiceItem item : allSelectedItems) {
                         if (item.getCar().equals(car)) {
@@ -152,49 +160,96 @@ public class SeeAllCarsController {
                         }
                     }
                 }
-                selectedCars.add(new InvoiceItem(null, 0, car.getPrice(), note, car));
+                InvoiceItem item = new InvoiceItem(null, 0, car.getPrice(), note, car);
+                item.setStatus(InvoiceItem.Status.ADDED);
+                selectedCars.add(item);
                 if (JOptionPane.showConfirmDialog(carsTableForm, "Selected Cars:\n"+selectedCars.toString() + "\n Select more cars?", "Select more cars?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                     return;
                 }
                 if (allSelectedItems != null) {
                     allSelectedItems.addAll(selectedCars);
-                    Coordinator.getInstance().addParam(CoordinatorParamConsts.SELECTED_CAR, allSelectedItems);
+                    Coordinator.getInstance().addParam(CoordinatorParamConsts.SELECTED_ITEMS, allSelectedItems);
                 }
                 else{
-                    Coordinator.getInstance().addParam(CoordinatorParamConsts.SELECTED_CAR, selectedCars);
+                    Coordinator.getInstance().addParam(CoordinatorParamConsts.SELECTED_ITEMS, selectedCars);
                 }
                 carsTableForm.dispose();
             }
         });
         
-        carsTableForm.btnSelectCustomerAddActionListener(new ActionListener() {
+        carsTableForm.btnEnableChangesAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                selectCustomer();
+                carsTableForm.getBtnEnableChanges().setEnabled(false);
+                carsTableForm.getTxtNote().setEnabled(true);
+                carsTableForm.getTxtPrice().setEnabled(true);
+                carsTableForm.getBtnEdit().setEnabled(true);
+                carsTableForm.getCbBrand().setEnabled(true);
+                fillTable(null);
+                InvoiceItem invoiceItem = (InvoiceItem) Coordinator.getInstance().getParam(CoordinatorParamConsts.INVOICE_ITEM_DETAILS);
+                CarsTableModel model = (CarsTableModel) carsTableForm.getTblCars().getModel();
+                int index = 0;
+                for (int row = 0; row < carsTableForm.getTblCars().getRowCount(); row++) {
+                    if (model.getCarAt(row).equals(invoiceItem.getCar())) {
+                        index = row;
+                    }
+                }
+                carsTableForm.getTblCars().setRowSelectionInterval(index, index);
+            }
+        });
+        
+        carsTableForm.btnEditAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                editItem();
             }
 
-            private void selectCustomer() {
-                Coordinator.getInstance().openCustomersTableForm(TableFormMode.SELECT_ITEM);
-                customer = (Customer)Coordinator.getInstance().getParam(CoordinatorParamConsts.SELECTED_CUSTOMER);
-                if (customer != null) {
-                    if (customer instanceof Individual) {
-                        Individual i = (Individual) customer;
-                        carsTableForm.getTxtCustomer().setText(i.getFirstName() + " " + i.getLastName());
-                    }
-                    else{
-                        carsTableForm.getTxtCustomer().setText(((Company) customer).getCompanyName());
+            private void editItem() {
+                int rowId = carsTableForm.getTblCars().getSelectedRow();
+                if (rowId < 0) {
+                    JOptionPane.showMessageDialog(carsTableForm, "Please select car!");
+                    return;
+                }
+                Car car = ((CarsTableModel) carsTableForm.getTblCars().getModel()).getCarAt(rowId);
+                InvoiceItem invoiceItem = (InvoiceItem) Coordinator.getInstance().getParam(CoordinatorParamConsts.INVOICE_ITEM_DETAILS);
+                if (car.getStatus() != CarStatus.AVAILABLE && !car.equals(invoiceItem.getCar())) {
+                    JOptionPane.showMessageDialog(carsTableForm, "Selected car is not available for sale!");
+                    return;
+                }
+                List<InvoiceItem> items = (List<InvoiceItem>) Coordinator.getInstance().getParam(CoordinatorParamConsts.SELECTED_ITEMS);
+                for (InvoiceItem item : items) {
+                    if (item.getCar().equals(car)) {
+                        JOptionPane.showMessageDialog(carsTableForm, "Selected car is already selected!");
+                        return;
                     }
                 }
-                else{
-                    carsTableForm.getTxtCustomer().setText("");
+                if (carsTableForm.getTxtPrice().getText().isBlank()) {
+                    JOptionPane.showMessageDialog(carsTableForm, "Please enter price");
+                    return;
                 }
+                String note = carsTableForm.getTxtNote().getText();
+                InvoiceItem i = (InvoiceItem) Coordinator.getInstance().getParam(CoordinatorParamConsts.INVOICE_ITEM_DETAILS);
+                Double price;
+                try {
+                    price = Double.valueOf(carsTableForm.getTxtPrice().getText());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(carsTableForm, "Invalid price input");
+                    return;
+                }
+                InvoiceItem item = new InvoiceItem(i.getInvoiceId(), i.getNum(), price, note, car);
+                item.setStatus(InvoiceItem.Status.UPDATED);
+                Coordinator.getInstance().addParam(CoordinatorParamConsts.INVOICE_ITEM_DETAILS, item);
+                JOptionPane.showMessageDialog(carsTableForm, "InvoiceItem is successfully edited");
+                carsTableForm.dispose();
             }
         });
         
         carsTableForm.addWindowListener(new WindowAdapter() {
             @Override
             public void windowActivated(WindowEvent e) {
-                carsTableForm.getCbBrand().setSelectedIndex(carsTableForm.getCbBrand().getSelectedIndex());
+                if (Coordinator.getInstance().getParam(CoordinatorParamConsts.INVOICE_ITEM_DETAILS) == null) {
+                    carsTableForm.getCbBrand().setSelectedIndex(carsTableForm.getCbBrand().getSelectedIndex());
+                }
             }
         });
     }
@@ -228,7 +283,6 @@ public class SeeAllCarsController {
             carsTableForm.getCbBrand().setModel(cbm);
             carsTableForm.getCbBrand().setSelectedIndex(0);
             
-            carsTableForm.getTblCars().setModel(new CarsTableModel(cars));
         } catch (Exception ex) {
             Logger.getLogger(SeeAllCarsController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -237,21 +291,50 @@ public class SeeAllCarsController {
         switch (formMode) {
             case TableFormMode.SEE_ALL_ITEMS:
                 carsTableForm.getBtnSelect().setVisible(false);
+                carsTableForm.getBtnEdit().setVisible(false);
+                carsTableForm.getBtnEnableChanges().setVisible(false);
                 carsTableForm.getLblNote().setVisible(false);
                 carsTableForm.getTxtNote().setVisible(false);
-                carsTableForm.getLblCustomer().setVisible(false);
-                carsTableForm.getTxtCustomer().setVisible(false);
-                carsTableForm.getBtnSelectCustomer().setVisible(false);
+                carsTableForm.getLblPrice().setVisible(false);
+                carsTableForm.getTxtPrice().setVisible(false);
                 carsTableForm.getBtnDetails().setVisible(true);
+                fillTable(null);
                 break;
             case TableFormMode.SELECT_ITEM:
                 selectedCars.clear();
                 carsTableForm.getBtnSelect().setVisible(true);
+                carsTableForm.getBtnEdit().setVisible(false);
+                carsTableForm.getBtnEnableChanges().setVisible(false);
                 carsTableForm.getLblNote().setVisible(true);
                 carsTableForm.getTxtNote().setVisible(true);
-                carsTableForm.getLblCustomer().setVisible(false);
-                carsTableForm.getTxtCustomer().setVisible(false);
-                carsTableForm.getBtnSelectCustomer().setVisible(false);
+                carsTableForm.getLblPrice().setVisible(false);
+                carsTableForm.getTxtPrice().setVisible(false);
+                carsTableForm.getBtnDetails().setVisible(false);
+                fillTable(null);
+                break;
+            case TableFormMode.EDIT_INVOICE_ITEM:
+                InvoiceItem invoiceItem = (InvoiceItem) Coordinator.getInstance().getParam(CoordinatorParamConsts.INVOICE_ITEM_DETAILS);
+                carsTableForm.getBtnSelect().setVisible(false);
+                
+                List<Car> c = new ArrayList<>(){{
+                    add(invoiceItem.getCar());
+                }};
+                
+                fillTable(c);
+                carsTableForm.getTblCars().setRowSelectionInterval(0, 0);
+                carsTableForm.getCbBrand().setEnabled(false);
+                
+                carsTableForm.getBtnEnableChanges().setVisible(true);
+                carsTableForm.getBtnEdit().setVisible(true);
+                carsTableForm.getBtnEdit().setEnabled(false);
+                carsTableForm.getLblNote().setVisible(true);
+                carsTableForm.getTxtNote().setVisible(true);
+                carsTableForm.getTxtNote().setEnabled(false);
+                carsTableForm.getTxtNote().setText(invoiceItem.getNote());
+                carsTableForm.getTxtPrice().setVisible(true);
+                carsTableForm.getTxtPrice().setEnabled(false);
+                carsTableForm.getTxtPrice().setText(Double.toString(invoiceItem.getPrice()));
+                
                 carsTableForm.getBtnDetails().setVisible(false);
                 break;
             default:

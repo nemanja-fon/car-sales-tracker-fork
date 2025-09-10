@@ -4,10 +4,14 @@
  */
 package so.invoice;
 
+import domain.Car;
 import domain.CarStatus;
+import domain.DefaultDomainObject;
 import domain.Invoice;
 import domain.InvoiceItem;
 import static domain.InvoiceItem.Status.ADDED;
+import java.util.ArrayList;
+import java.util.List;
 import so.AbstractSO;
 
 /**
@@ -26,47 +30,54 @@ public class UpdateInvoiceSO extends AbstractSO {
     @Override
     protected void execute(Object o) throws Exception {
         Invoice invoice = (Invoice) o;
+        dbBroker.updateRow(invoice);
+        
         for (InvoiceItem invoiceItem : invoice.getInvoiceItems()) {
+            if (invoiceItem.getStatus() == null) {continue;}
             switch (invoiceItem.getStatus()) {
-                case ADDED:
+                case InvoiceItem.Status.ADDED:
                     invoiceItem.getCar().setStatus(CarStatus.SOLD);
                     dbBroker.updateRow(invoiceItem.getCar());
                     dbBroker.insertRow(invoiceItem);
                     break;
-                case DELETED:
+                case InvoiceItem.Status.DELETED:
                     invoiceItem.getCar().setStatus(CarStatus.AVAILABLE);
                     dbBroker.updateRow(invoiceItem.getCar());
                     dbBroker.deleteRow(invoiceItem);
                     break;
-                case UPDATED:
-                    invoiceItem.setSearchCondition("rb");
-                    invoiceItem.setSearchConditionValue(Integer.toString(invoiceItem.getNum()));
-                    InvoiceItem old =(InvoiceItem) dbBroker.getOneByCondition(invoiceItem);
+                case InvoiceItem.Status.UPDATED:
+                    InvoiceItem old = new InvoiceItem();
+                    
+                    InvoiceItem invItem = new InvoiceItem();
+                    invItem.setSearchCondition("invoice_id");
+                    invItem.setSearchConditionValue(Long.toString(invoice.getIdInvoice()));
+                    List<DefaultDomainObject> items = dbBroker.getByCondition(invItem);
+                    for (DefaultDomainObject item : items) {
+                        InvoiceItem i = (InvoiceItem) item;
+                        if (i.getNum() == invoiceItem.getNum()) {
+                            i.getCar().setSearchCondition("id");
+                            i.getCar().setSearchConditionValue(i.getCar().getIdCar().toString());
+                            i.setCar((Car) dbBroker.getOneByCondition(i.getCar()));
+                            old = i;
+                            break;
+                        }
+                    }
+                    
+                    System.out.println("old: " + old.getCar());
+                    System.out.println("new: " + invoiceItem.getCar());
                     
                     if (!old.getCar().equals(invoiceItem.getCar())) {
                         old.getCar().setStatus(CarStatus.AVAILABLE);
                         dbBroker.updateRow(old.getCar());
-                        
+
                         invoiceItem.getCar().setStatus(CarStatus.SOLD);
                         dbBroker.updateRow(invoiceItem.getCar());
                     }
                     dbBroker.updateRow(invoiceItem);
                     break;
                 default:
-                    throw new AssertionError();
+                    break;
             }
         }
-        dbBroker.updateRow(invoice);
-    }
-
-    @Override
-    protected void commit() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    protected void rollback() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
+    }    
 }

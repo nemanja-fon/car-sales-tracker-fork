@@ -18,6 +18,7 @@ public class DatabaseConnection {
         DatabaseProperties props = DatabaseProperties.getInstance();
         try {
             connection = DriverManager.getConnection(props.getProperty("url"), props.getProperty("user"), props.getProperty("password"));
+            connection.setAutoCommit(false);
             System.out.println("Database connected successfully!");
         } catch (SQLException ex) {
             System.out.println("Connection error: "+ex.getMessage());

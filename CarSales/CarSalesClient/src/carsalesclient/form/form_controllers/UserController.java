@@ -101,6 +101,21 @@ public class UserController {
             }
         });
         
+        addUserForm.btnDeleteAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                User user = (User) Coordinator.getInstance().getParam(CoordinatorParamConsts.USER_DETAILS);
+                try {
+                    ClientController.getInstance().deleteUser(user);
+                    JOptionPane.showMessageDialog(addUserForm, "System successfully deleted user");
+                    addUserForm.dispose();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(addUserForm, "System couldn't delete user");
+                    ex.printStackTrace();
+                }
+            }
+        });
+        
         addUserForm.btnCancelAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -125,6 +140,7 @@ public class UserController {
                 
                 addUserForm.getBtnEnableChanges().setVisible(false);
                 addUserForm.getBtnEdit().setVisible(false);
+                addUserForm.getBtnDelete().setVisible(false);
                 addUserForm.getBtnSave().setVisible(true);
                 addUserForm.getBtnCancel().setVisible(true);
                 break;
@@ -144,6 +160,8 @@ public class UserController {
                 
                 addUserForm.getBtnEnableChanges().setVisible(true);
                 addUserForm.getBtnEnableChanges().setEnabled(true);
+                addUserForm.getBtnDelete().setVisible(true);
+                addUserForm.getBtnDelete().setEnabled(true);
                 addUserForm.getBtnEdit().setVisible(true);
                 addUserForm.getBtnEdit().setEnabled(false);
                 addUserForm.getBtnSave().setVisible(false);
@@ -158,6 +176,7 @@ public class UserController {
                 
                 addUserForm.getBtnEnableChanges().setEnabled(false);
                 addUserForm.getBtnEdit().setEnabled(true);
+                addUserForm.getBtnDelete().setEnabled(false);
                 break;
             default:
                 break;

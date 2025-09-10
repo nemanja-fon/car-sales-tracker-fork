@@ -44,10 +44,12 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="btnEnableChanges" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="73" max="32767" attributes="0"/>
+                      <EmptySpace pref="52" max="32767" attributes="0"/>
                       <Component id="btnEdit" min="-2" pref="90" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnSave" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnDelete" min="-2" pref="90" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnCancel" min="-2" pref="90" max="-2" attributes="0"/>
                   </Group>
@@ -97,12 +99,13 @@
                   <Component id="jLabel4" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="txtPassword" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="67" max="32767" attributes="0"/>
+              <EmptySpace pref="87" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnSave" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="btnEnableChanges" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="btnEdit" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="btnCancel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="btnDelete" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -232,6 +235,14 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="ADD NEW SALESPERSON"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnDelete">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Comic Sans MS" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
     </Component>
   </SubComponents>

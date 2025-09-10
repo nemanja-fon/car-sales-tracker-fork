@@ -36,13 +36,6 @@ public class LoginUserSO extends AbstractSO{
         throw new Exception("Wrong username or password");
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
     
     public User getLoggedInUser(){
         return loggedInUser;

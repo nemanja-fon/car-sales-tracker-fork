@@ -174,6 +174,11 @@ public class Car extends DefaultDomainObject implements  Serializable{
         }
         return Objects.equals(this.idCar, other.idCar);
     }
+
+    @Override
+    public String toString() {
+        return brand + " " + model;
+    }
     
     
     

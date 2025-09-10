@@ -24,13 +24,4 @@ public class DeleteCarSO extends AbstractSO{
     protected void execute(Object o) throws Exception {
         dbBroker.deleteRow((Car) o);
     }
-
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
-    
 }

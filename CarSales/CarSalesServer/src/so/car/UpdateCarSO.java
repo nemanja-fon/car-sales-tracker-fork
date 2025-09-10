@@ -25,12 +25,4 @@ public class UpdateCarSO extends AbstractSO {
         dbBroker.updateRow((Car) o);
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
-    
 }

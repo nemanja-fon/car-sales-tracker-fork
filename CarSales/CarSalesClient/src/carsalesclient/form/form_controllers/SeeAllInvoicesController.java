@@ -95,6 +95,20 @@ public class SeeAllInvoicesController {
             }
         });
         
+        invoicesTableForm.btnDetailsAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int rowId = invoicesTableForm.getTblInvoices().getSelectedRow();
+                if (rowId < 0) {
+                    JOptionPane.showMessageDialog(invoicesTableForm, "Please select invoice!");
+                    return;
+                }
+                Invoice invoice = ((InvoicesTableModel) invoicesTableForm.getTblInvoices().getModel()).getInvoiceAt(rowId);
+                Coordinator.getInstance().addParam(CoordinatorParamConsts.INVOICE_DETAILS, invoice);
+                Coordinator.getInstance().openAddInvoiceForm(AddFormMode.DETAILS_FORM);
+            }
+        });
+        
         invoicesTableForm.btnGeneratePdfAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

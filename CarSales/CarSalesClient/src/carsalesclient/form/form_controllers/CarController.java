@@ -6,7 +6,6 @@ package carsalesclient.form.form_controllers;
 
 import carsalesclient.controller.ClientController;
 import carsalesclient.form.AddCarForm;
-import carsalesclient.form.CustomersTableForm;
 import carsalesclient.form.constants.CoordinatorParamConsts;
 import carsalesclient.form.form_coordinator.Coordinator;
 import carsalesclient.form.language.LanguageManager;
@@ -110,6 +109,25 @@ public class CarController {
                     }
                 } catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
+                }
+            }
+        });
+        
+        carForm.btnDeleteAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                delete();
+            }
+
+            private void delete() {
+                Car car = (Car) Coordinator.getInstance().getParam(CoordinatorParamConsts.CAR_DETAILS);
+                try {
+                    ClientController.getInstance().deleteCar(car);
+                    JOptionPane.showMessageDialog(carForm, "System successfully deleted selected car");
+                    carForm.dispose();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(carForm, "System couldn't delete selected car");
+                    e.printStackTrace();
                 }
             }
         });
@@ -341,6 +359,7 @@ public class CarController {
                 
                 carForm.getBtnEnableChanges().setVisible(false);
                 carForm.getBtnEdit().setVisible(false);
+                carForm.getBtnDelete().setVisible(false);
                 carForm.getBtnSave().setVisible(true);
                 carForm.getBtnSave().setEnabled(true);
                 break;
@@ -383,6 +402,8 @@ public class CarController {
                 
                 carForm.getBtnEnableChanges().setVisible(true);
                 carForm.getBtnEnableChanges().setEnabled(true);
+                carForm.getBtnDelete().setVisible(true);
+                carForm.getBtnDelete().setEnabled(true);
                 carForm.getBtnEdit().setVisible(true);
                 carForm.getBtnEdit().setEnabled(false);
                 carForm.getBtnSave().setVisible(false);
@@ -408,6 +429,7 @@ public class CarController {
                 
                 carForm.getBtnEnableChanges().setVisible(true);
                 carForm.getBtnEnableChanges().setEnabled(false);
+                carForm.getBtnDelete().setEnabled(false);
                 carForm.getBtnEdit().setEnabled(true);
                 break;
                 

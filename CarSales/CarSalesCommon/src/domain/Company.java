@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,9 +22,11 @@ public class Company extends Customer implements Serializable{
     private String taxNumber;
     private String registrationNumber;
     private String authorizedPerson;
+    private Customer customer;
 
     public Company(Long idCustomer, String companyName, String taxNumber, String registrationNumber, String authorizedPerson, String phone, String email, String address) {
         super(idCustomer, phone, email, address);
+        this.customer = new Customer();
         this.companyName = companyName;
         this.taxNumber = taxNumber;
         this.registrationNumber = registrationNumber;
@@ -80,9 +83,39 @@ public class Company extends Customer implements Serializable{
 
     @Override
     public String getDeleteQuery() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "DELETE FROM company WHERE id = "+idCustomer;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Company other = (Company) obj;
+        if (!Objects.equals(this.taxNumber, other.taxNumber)) {
+            return false;
+        }
+        if (!Objects.equals(this.registrationNumber, other.registrationNumber)) {
+            return false;
+        }
+        return Objects.equals(this.idCustomer, other.idCustomer);
+    }
+
+    
+    
+    
     public String getCompanyName() {
         return companyName;
     }
@@ -114,5 +147,19 @@ public class Company extends Customer implements Serializable{
     public void setAuthorizedPerson(String authorizedPerson) {
         this.authorizedPerson = authorizedPerson;
     }
+
+    public Customer getCustomer() {
+        customer.setIdCustomer(idCustomer);
+        customer.setPhone(phone);
+        customer.setEmail(email);
+        customer.setAddress(address);
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+    
+    
     
 }

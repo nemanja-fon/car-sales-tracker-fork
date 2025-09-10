@@ -28,13 +28,6 @@ public class SearchCompanySO extends AbstractSO {
         companies = dbBroker.getByCondition((Company) o);
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
 
     public List<DefaultDomainObject> getCompanies() {
         return companies;

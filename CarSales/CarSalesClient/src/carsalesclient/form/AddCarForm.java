@@ -42,6 +42,7 @@ public class AddCarForm extends javax.swing.JDialog {
         btnSave = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         btnEnableChanges = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         lblFirstReg = new javax.swing.JLabel();
@@ -113,6 +114,14 @@ public class AddCarForm extends javax.swing.JDialog {
             }
         });
 
+        btnDelete.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -125,6 +134,8 @@ public class AddCarForm extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnCancel)
                 .addContainerGap())
         );
@@ -136,7 +147,8 @@ public class AddCarForm extends javax.swing.JDialog {
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEnableChanges, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -210,7 +222,7 @@ public class AddCarForm extends javax.swing.JDialog {
                     .addComponent(txtModel)
                     .addComponent(txtFirstReg, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtBrand, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cbCategory, 0, 181, Short.MAX_VALUE)
+                    .addComponent(cbCategory, 0, 165, Short.MAX_VALUE)
                     .addComponent(txtId)
                     .addComponent(txtVin, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
@@ -287,7 +299,6 @@ public class AddCarForm extends javax.swing.JDialog {
         lblStatus.setText("Status:");
 
         cbStatus.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cbStatus.setSelectedIndex(-1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -306,7 +317,7 @@ public class AddCarForm extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtPrice)
                     .addComponent(txtEnginePower)
-                    .addComponent(cbGearbox, 0, 177, Short.MAX_VALUE)
+                    .addComponent(cbGearbox, 0, 193, Short.MAX_VALUE)
                     .addComponent(txtEngineCapacity)
                     .addComponent(cbFuel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -387,8 +398,13 @@ public class AddCarForm extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditActionPerformed
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnEnableChanges;
     private javax.swing.JButton btnSave;
@@ -548,6 +564,11 @@ public class AddCarForm extends javax.swing.JDialog {
     public JTextField getTxtVin() {
         return txtVin;
     }
+
+    public JButton getBtnDelete() {
+        return btnDelete;
+    }
+    
     
     
     public void btnEnableChangesAddActionListener(ActionListener actionListener){
@@ -566,4 +587,7 @@ public class AddCarForm extends javax.swing.JDialog {
         btnCancel.addActionListener(actionListener);
     }
     
+    public void btnDeleteAddActionListener(ActionListener actionListener){
+        btnDelete.addActionListener(actionListener);
+    }
 }

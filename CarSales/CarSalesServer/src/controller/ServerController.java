@@ -12,6 +12,8 @@ import domain.DefaultDomainObject;
 import domain.Individual;
 import domain.Invoice;
 import domain.InvoiceItem;
+import domain.SalesmanShift;
+import domain.Shift;
 import domain.User;
 import java.util.List;
 import java.sql.SQLException;
@@ -22,14 +24,25 @@ import so.car.GetAllCarsSO;
 import so.car.InsertCarSO;
 import so.car.SearchCarsSO;
 import so.car.UpdateCarSO;
+import so.customer.DeleteCustomerSO;
 import so.customer.GetAllCustomersSO;
 import so.customer.InsertCustomerSO;
 import so.customer.SearchCustomersSO;
 import so.customer.UpdateCustomerSO;
 import so.customer.individual.InsertIndividualSO;
+import so.customer.individual.UpdateIndividualSO;
+import so.invoice.DeleteInvoiceSO;
 import so.invoice.GetAllInvoicesSO;
 import so.invoice.InsertInvoiceSO;
 import so.invoice.SearchInvoicesSO;
+import so.invoice.UpdateInvoiceSO;
+import so.salesmanShift.InsertSalesmanShiftSO;
+import so.shift.DeleteShiftSO;
+import so.shift.GetAllShiftsSO;
+import so.shift.InsertShiftSO;
+import so.shift.SearchShiftsSO;
+import so.shift.UpdateShiftSO;
+import so.user.DeleteUserSO;
 import so.user.GetAllUsersSO;
 import so.user.InsertUserSO;
 import so.user.LoginUserSO;
@@ -104,6 +117,12 @@ public class ServerController {
         so.executeSO(null);
         return so.getInvoices();
     }
+    
+    public List<DefaultDomainObject> getAllShifts() throws Exception {
+        GetAllShiftsSO so = new GetAllShiftsSO();
+        so.executeSO(null);
+        return so.getShifts();
+    }
 
     
     
@@ -134,6 +153,11 @@ public class ServerController {
         return so.getInvoices();
     }
     
+    public List<DefaultDomainObject> searchShifts(Shift shift) throws Exception {
+        SearchShiftsSO so = new SearchShiftsSO();
+        so.executeSO(shift);
+        return so.getShifts();
+    }
     
     
     
@@ -160,10 +184,48 @@ public class ServerController {
         so.executeSO(invoice);
     }
     
+    public void insertShift(Shift shift) throws Exception {
+        InsertShiftSO so = new InsertShiftSO();
+        so.executeSO(shift);
+    }
+
+    public void insertSalesmanShift(SalesmanShift salesmanShift) throws Exception {
+        InsertSalesmanShiftSO so = new InsertSalesmanShiftSO();
+        so.executeSO(salesmanShift);
+    }
+    
+
     
     
     
     
+    public void deleteCar(Car car) throws Exception {
+        DeleteCarSO so = new DeleteCarSO();
+        so.executeSO(car);
+    }
+    
+    public void deleteCustomer(Customer customer) throws Exception {
+        DeleteCustomerSO so = new DeleteCustomerSO();
+        so.executeSO(customer);
+    }
+
+    public void deleteInvoice(Invoice invoice) throws Exception {
+        DeleteInvoiceSO so = new DeleteInvoiceSO();
+        so.executeSO(invoice);
+    }
+    
+    public void deleteUser(User user) throws Exception {
+        DeleteUserSO so = new DeleteUserSO();
+        so.executeSO(user);
+    }
+    
+    public void deleteShift(Shift shift) throws Exception {
+        DeleteShiftSO so = new DeleteShiftSO();
+        so.executeSO(so);
+    }
+
+    
+
     
     
     public void updateCustomer(Customer customer) throws Exception {
@@ -181,9 +243,15 @@ public class ServerController {
         so.executeSO(user);
     }
 
+    public void updateInvoice(Invoice invoice) throws Exception {
+        UpdateInvoiceSO so = new UpdateInvoiceSO();
+        so.executeSO(invoice);
+    }
     
-    
-    
+    public void updateShift(Shift shift) throws Exception {
+        UpdateShiftSO so = new UpdateShiftSO();
+        so.executeSO(shift);
+    }
     
     
     
@@ -192,4 +260,7 @@ public class ServerController {
         dbBroker.closeCon();
     }
 
+    
+
+    
 }

@@ -12,15 +12,11 @@ import carsalesclient.form.language.LanguageManager;
 import carsalesclient.form.modes.AddFormMode;
 import carsalesclient.form.modes.TableFormMode;
 import domain.User;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Locale;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -69,7 +65,7 @@ public class MainController {
         mainForm.miSeeAllSalesmenAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Coordinator.getInstance().openUsersTableForm();
+                Coordinator.getInstance().openUsersTableForm(TableFormMode.SEE_ALL_ITEMS);
             }
         });
         
@@ -98,6 +94,20 @@ public class MainController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Coordinator.getInstance().openCustomersTableForm(TableFormMode.SEE_ALL_ITEMS);
+            }
+        });
+        
+        mainForm.miAddNewShiftAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Coordinator.getInstance().openAddShiftForm(AddFormMode.ADD_FORM);
+            }
+        });
+        
+        mainForm.miSeeAllShiftsAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Coordinator.getInstance().openShiftsTableForm(TableFormMode.SEE_ALL_ITEMS);
             }
         });
         
@@ -133,10 +143,31 @@ public class MainController {
             }
         });
         
+        mainForm.miLogoutAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    User user =(User) Coordinator.getInstance().getParam(CoordinatorParamConsts.LOGGED_IN_USER);
+                    ClientController.getInstance().logout(user);
+                    mainForm.dispose();
+                    Coordinator.getInstance().openLoginForm();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(mainForm, "System couldn't logout user");
+                }
+            }
+        });
+        
         mainForm.btnSellCarAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Coordinator.getInstance().openAddInvoiceForm(AddFormMode.ADD_FORM);
+            }
+        });
+        
+        mainForm.btnStartShiftAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Coordinator.getInstance().openStartShiftForm();
             }
         });
 

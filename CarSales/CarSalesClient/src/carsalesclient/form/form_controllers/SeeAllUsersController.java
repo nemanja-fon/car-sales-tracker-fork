@@ -9,6 +9,7 @@ import carsalesclient.form.UsersTableForm;
 import carsalesclient.form.constants.CoordinatorParamConsts;
 import carsalesclient.form.form_coordinator.Coordinator;
 import carsalesclient.form.modes.AddFormMode;
+import carsalesclient.form.modes.TableFormMode;
 import carsalesclient.form.tableModels.UsersTableModel;
 import domain.User;
 import java.awt.event.ActionEvent;
@@ -30,7 +31,8 @@ public class SeeAllUsersController {
         addListeners();
     }
     
-    public void openForm(){
+    public void openForm(TableFormMode formMode){
+        prepareForm(formMode);
         fillTable();
         usersTableForm.setVisible(true);
     }
@@ -91,6 +93,27 @@ public class SeeAllUsersController {
             }
         });
         
+        usersTableForm.btnSelectAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int rowId = usersTableForm.getTblUsers().getSelectedRow();
+                if (rowId < 0) {
+                    JOptionPane.showMessageDialog(usersTableForm, "Please select salesperson!");
+                    return;
+                }
+                User user = ((UsersTableModel) usersTableForm.getTblUsers().getModel()).getUserAt(rowId);
+                Coordinator.getInstance().addParam(CoordinatorParamConsts.SELECTED_USER, user);
+                usersTableForm.dispose();
+            }
+        });
+        
+        usersTableForm.btnAddNewAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Coordinator.getInstance().openAddUserForm(AddFormMode.ADD_FORM);
+            }
+        });
+        
         usersTableForm.addWindowListener(new WindowAdapter() {
             @Override
             public void windowActivated(WindowEvent e) {
@@ -111,6 +134,23 @@ public class SeeAllUsersController {
             usersTableForm.getTblUsers().setModel(new UsersTableModel(users));
         } catch (Exception e) {
             System.out.println("Error: "+ e.getMessage());
+        }
+    }
+
+    private void prepareForm(TableFormMode formMode) {
+        switch (formMode) {
+            case SEE_ALL_ITEMS:
+                usersTableForm.getBtnSelect().setVisible(false);
+                usersTableForm.getBtnAddNew().setVisible(true);
+                usersTableForm.getBtnDetails().setVisible(true);
+                break;
+            case SELECT_ITEM:
+                usersTableForm.getBtnSelect().setVisible(true);
+                usersTableForm.getBtnAddNew().setVisible(false);
+                usersTableForm.getBtnDetails().setVisible(false);
+                break;
+            default:
+                throw new AssertionError();
         }
     }
 }

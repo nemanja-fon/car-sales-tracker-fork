@@ -45,13 +45,6 @@ public class FindCustomerSO extends AbstractSO {
         }
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
 
     public DefaultDomainObject getCustomer() {
         return customer;

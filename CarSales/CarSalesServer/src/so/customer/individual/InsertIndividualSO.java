@@ -4,7 +4,10 @@
  */
 package so.customer.individual;
 
+import domain.Customer;
+import domain.DefaultDomainObject;
 import domain.Individual;
+import java.util.List;
 import so.AbstractSO;
 
 /**
@@ -21,14 +24,17 @@ public class InsertIndividualSO extends AbstractSO {
 
     @Override
     protected void execute(Object o) throws Exception {
-        dbBroker.insertRow((Individual) o);
+        Individual individual = (Individual) o;
+        List<DefaultDomainObject> allIndividuals = dbBroker.getAll(new Individual());
+        for (DefaultDomainObject ind : allIndividuals) {
+            if (individual.equals((Individual) ind)) {
+                throw new Exception("Individual already exists in db");
+            }
+        }
+        individual.getCustomer().setType(Customer.CustomerType.INDIVIDUAL);
+        Long idCustomer = dbBroker.insertRowAndGetId(individual.getCustomer());
+        individual.setIdCustomer(idCustomer);
+        dbBroker.insertRow(individual);
     }
 
-    @Override
-    protected void commit() {
-    }
-
-    @Override
-    protected void rollback() {
-    }
 }

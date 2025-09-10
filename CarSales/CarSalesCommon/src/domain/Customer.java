@@ -19,6 +19,11 @@ public class Customer extends DefaultDomainObject implements Serializable{
     protected String phone;
     protected String email;
     protected String address;
+    private CustomerType type;
+
+    public enum CustomerType{
+        INDIVIDUAL, COMPANY
+    }
 
     public Customer(Long idCustomer, String phone, String email, String address) {
         this.idCustomer = idCustomer;
@@ -61,6 +66,14 @@ public class Customer extends DefaultDomainObject implements Serializable{
     public void setAddress(String address) {
         this.address = address;
     }
+    
+    public CustomerType getType() {
+        return type;
+    }
+
+    public void setType(CustomerType type) {
+        this.type = type;
+    }
 
     @Override
     public List<DefaultDomainObject> returnList(ResultSet rs) throws SQLException {
@@ -70,9 +83,11 @@ public class Customer extends DefaultDomainObject implements Serializable{
                 Customer c = null;
                 if ("individual".equals(rs.getString("c.type"))) {
                     c = new Individual(rs.getLong("c.id"), rs.getString("i.first_name"), rs.getString("i.last_name"), rs.getString("i.jmbg"), rs.getString("i.id_card_number"), rs.getString("c.phone"), rs.getString("c.email"), rs.getString("c.address"));
+                    c.setType(CustomerType.INDIVIDUAL);
                 }
                 if("company".equals(rs.getString("c.type"))) {
                     c = new Company(rs.getLong("c.id"), rs.getString("co.company_name"), rs.getString("co.PIB"), rs.getString("co.MB"), rs.getString("co.authorized_person"), rs.getString("c.phone"), rs.getString("c.email"), rs.getString("c.address"));
+                    c.setType(CustomerType.COMPANY);
                 }
                 customers.add(c);
             }
@@ -105,8 +120,8 @@ public class Customer extends DefaultDomainObject implements Serializable{
     @Override
     public String getInsertQuery() {
         return "INSERT INTO customer "+
-                "(phone, email, address, id_card_number) "+
-                "values('"+ phone +"', '"+ email +"', '"+ address +"')";
+                "(phone, email, address, type) "+
+                "values('"+ phone +"', '"+ email +"', '"+ address +"', '"+ type.toString().toLowerCase() +"')";
     }
 
     @Override

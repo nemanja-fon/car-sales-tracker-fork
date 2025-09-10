@@ -76,7 +76,9 @@
                   <Component id="btnEdit" min="-2" pref="90" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnSave" min="-2" pref="90" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnDelete" min="-2" pref="90" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnCancel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -91,6 +93,7 @@
                       <Component id="btnCancel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="btnEnableChanges" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="btnEdit" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="btnDelete" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -143,6 +146,17 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEnableChangesActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JButton" name="btnDelete">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Comic Sans MS" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Delete"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JSplitPane" name="jSplitPane1">
@@ -182,7 +196,7 @@
                           <Component id="txtModel" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtFirstReg" alignment="1" max="32767" attributes="0"/>
                           <Component id="txtBrand" alignment="1" max="32767" attributes="0"/>
-                          <Component id="cbCategory" alignment="0" pref="181" max="32767" attributes="0"/>
+                          <Component id="cbCategory" alignment="0" pref="165" max="32767" attributes="0"/>
                           <Component id="txtId" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtVin" alignment="1" max="32767" attributes="0"/>
                       </Group>
@@ -390,7 +404,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtPrice" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtEnginePower" max="32767" attributes="0"/>
-                          <Component id="cbGearbox" alignment="0" pref="177" max="32767" attributes="0"/>
+                          <Component id="cbGearbox" alignment="0" pref="193" max="32767" attributes="0"/>
                           <Component id="txtEngineCapacity" alignment="0" max="32767" attributes="0"/>
                           <Component id="cbFuel" alignment="0" max="32767" attributes="0"/>
                           <Component id="cbStatus" max="32767" attributes="0"/>
@@ -553,7 +567,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Comic Sans MS" size="14" style="0"/>
                 </Property>
-                <Property name="selectedIndex" type="int" value="-1"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;CarStatus&gt;"/>
