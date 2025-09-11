@@ -63,9 +63,6 @@ public class UpdateInvoiceSO extends AbstractSO {
                         }
                     }
                     
-                    System.out.println("old: " + old.getCar());
-                    System.out.println("new: " + invoiceItem.getCar());
-                    
                     if (!old.getCar().equals(invoiceItem.getCar())) {
                         old.getCar().setStatus(CarStatus.AVAILABLE);
                         dbBroker.updateRow(old.getCar());

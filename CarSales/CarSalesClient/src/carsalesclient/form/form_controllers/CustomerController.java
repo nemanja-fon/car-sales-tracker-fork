@@ -93,6 +93,7 @@ public class CustomerController {
                             customer.setIdCustomer(((Customer) Coordinator.getInstance().getParam(CoordinatorParamConsts.CUSTOMER_DETAILS)).getIdCustomer());
                             ClientController.getInstance().updateCustomer(customer);
                             JOptionPane.showMessageDialog(customerForm, (customer instanceof Individual ? ((Individual) customer).getFirstName() +" "+ ((Individual) customer).getLastName() : ((Company) customer).getCompanyName())+" has been successfully updated!");
+                            JOptionPane.showMessageDialog(customerForm, "The system has updated the customer");
                             customerForm.dispose();
                         }
                     }
@@ -100,6 +101,7 @@ public class CustomerController {
                         JOptionPane.showMessageDialog(customerForm, "Fill all required fields");
                     }
                 } catch (Exception e) {
+                    JOptionPane.showMessageDialog(customerForm, "The system cannot update the customer");
                     System.out.println("Error: " + e.getMessage());
                     e.printStackTrace();
                 }
@@ -129,6 +131,7 @@ public class CustomerController {
                         }
                         if(JOptionPane.showConfirmDialog(customerForm, "Are you sure you want to INSERT the following customer into the database: \n"+ (customerType.equals("Individual") ? ((Individual) customer).getFirstName() +" "+ ((Individual) customer).getLastName() : ((Company) customer).getCompanyName()) +", "+customer.getPhone()+", "+customer.getEmail(), "Add customer", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                             ClientController.getInstance().insertCustomer(customer);
+                            JOptionPane.showMessageDialog(customerForm, "The system has saved the customer");
                             if(JOptionPane.showConfirmDialog(customerForm, (customerType.equals("Individual") ? ((Individual) customer).getFirstName() +" "+ ((Individual) customer).getLastName() : ((Company) customer).getCompanyName())+" has been successfully added to the database!\n\nAdd more customers?", "Success", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                                 prepareForm(AddFormMode.ADD_FORM);
                             }
@@ -141,6 +144,7 @@ public class CustomerController {
                         JOptionPane.showMessageDialog(customerForm, "Fill all required fields");
                     }
                 } catch (Exception e) {
+                    JOptionPane.showMessageDialog(customerForm, "The system cannot save the customer");
                     System.out.println("Error: " + e.getMessage());
                     e.printStackTrace();
                 }
@@ -157,10 +161,10 @@ public class CustomerController {
                 Customer customer = (Customer) Coordinator.getInstance().getParam(CoordinatorParamConsts.CUSTOMER_DETAILS);
                 try {
                     ClientController.getInstance().deleteCustomer(customer);
-                    JOptionPane.showMessageDialog(customerForm, "System successfully deleted customer");
+                    JOptionPane.showMessageDialog(customerForm, "The system has deleted customer");
                     customerForm.dispose();
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(customerForm, "System couldn't delete selected customer");
+                    JOptionPane.showMessageDialog(customerForm, "The system cannot delete customer");
                     e.printStackTrace();
                 }
             }

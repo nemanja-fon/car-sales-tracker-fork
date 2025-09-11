@@ -136,10 +136,16 @@ public class SeeAllCustomersController {
             private void selectCustomer() {
                 int rowId = customersTableForm.getTblCustomers().getSelectedRow();
                 if (rowId < 0) {
-                    JOptionPane.showMessageDialog(customersTableForm, "Please select customer!");
+                    JOptionPane.showMessageDialog(customersTableForm, "The system cannot find the customer");
                     return;
                 }
                 Customer customer = ((CustomersTableModel) customersTableForm.getTblCustomers().getModel()).getCustomerAt(rowId);
+                if (customer != null) {
+                    JOptionPane.showMessageDialog(customersTableForm, "The system has found the customer");
+                }
+                else{
+                    JOptionPane.showMessageDialog(customersTableForm, "The system cannot find the customer");
+                }
                 Coordinator.getInstance().addParam(CoordinatorParamConsts.CUSTOMER_DETAILS, customer);
                 Coordinator.getInstance().openAddCustomerForm(AddFormMode.DETAILS_FORM);
             }

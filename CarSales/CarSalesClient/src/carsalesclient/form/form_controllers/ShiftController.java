@@ -112,6 +112,7 @@ public class ShiftController {
                         Shift shift = new Shift(null, d, start, end);
                         if(JOptionPane.showConfirmDialog(addShiftForm, "Are you sure you want to SAVE the following shift into the database: \n"+sdf.format(shift.getShiftDate())+" - "+shift.getStartTime().format(formatter)+" - "+shift.getEndTime().format(formatter), "Save shift", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                             ClientController.getInstance().insertShift(shift);
+                            JOptionPane.showMessageDialog(addShiftForm, "The system has saved the shift");
                             if(JOptionPane.showConfirmDialog(addShiftForm, sdf.format(shift.getShiftDate())+" - " + shift.getStartTime().format(formatter) + " - " + shift.getEndTime().format(formatter) +" has been successfully added to the database!\n\nAdd more shifts?", "Success", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                                 prepareForm(AddFormMode.ADD_FORM);
                             }
@@ -124,6 +125,7 @@ public class ShiftController {
                         JOptionPane.showMessageDialog(addShiftForm, "Fill all required fields");
                     }
                 } catch (Exception e) {
+                    JOptionPane.showMessageDialog(addShiftForm, "The system cannot save the shift");
                     System.out.println("Error: " + e.getMessage());
                     JOptionPane.showMessageDialog(addShiftForm, e.getMessage());
                 }

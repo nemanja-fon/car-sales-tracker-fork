@@ -55,6 +55,7 @@ public class LoginController {
                     
                     try {
                         User loggedInUser = ClientController.getInstance().login(user);
+                        JOptionPane.showMessageDialog(loginForm, "The username and password are correct");
                         JOptionPane.showMessageDialog(loginForm, LanguageManager.getValue("Login_successfull!_Welcome")+" "+ loggedInUser.getFirstName() +"!");
                         loginForm.dispose();
                         Coordinator.getInstance().addParam(CoordinatorParamConsts.LOGGED_IN_USER, loggedInUser);
@@ -62,6 +63,7 @@ public class LoginController {
                                 
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(loginForm, ex.getMessage());
+                        JOptionPane.showMessageDialog(loginForm, "The main form and menu cannot be opened");
                     }
                 }
                 else{

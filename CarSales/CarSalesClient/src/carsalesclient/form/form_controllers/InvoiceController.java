@@ -233,7 +233,8 @@ public class InvoiceController {
                         Coordinator.getInstance().addParam(CoordinatorParamConsts.SELECTED_ITEMS, null);
                         Coordinator.getInstance().addParam(CoordinatorParamConsts.SELECTED_CUSTOMER, null);
                         
-                        if(JOptionPane.showConfirmDialog(invoiceForm, "Invoice has been successfully added to the database!!! \n\n Create more invoices?", "Success", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION){
+                        JOptionPane.showMessageDialog(invoiceForm, "The system has saved the invoice");
+                        if(JOptionPane.showConfirmDialog(invoiceForm, "Create more invoices?", "Success", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION){
                             prepareForm(AddFormMode.ADD_FORM);
                             customer = null;
                             invoiceForm.getTxtSelectedCustomer().setText("");
@@ -244,6 +245,7 @@ public class InvoiceController {
                         }
                     }
                 } catch (Exception e) {
+                    JOptionPane.showMessageDialog(invoiceForm, "The system cannot save the invoice");
                     System.out.println("Error: "+e.getMessage());
                 }
                 
@@ -310,10 +312,11 @@ public class InvoiceController {
                         Coordinator.getInstance().addParam(CoordinatorParamConsts.SELECTED_USER, null);
                         Coordinator.getInstance().addParam(CoordinatorParamConsts.INVOICE_ITEM_DETAILS, null);
                         
-                        JOptionPane.showMessageDialog(invoiceForm, "Invoice has been successfully updated!!!");
+                        JOptionPane.showMessageDialog(invoiceForm, "The system has updated the invoice");
                         invoiceForm.dispose();
                     }
                 } catch (Exception e) {
+                    JOptionPane.showMessageDialog(invoiceForm, "The system cannot update the invoice");
                     System.out.println("Error: "+e.getMessage());
                 }
             }

@@ -30,7 +30,7 @@ public class InsertInvoiceSO extends AbstractSO {
         
         List<DefaultDomainObject> invoices = dbBroker.getAll(new Invoice());
         for (DefaultDomainObject i : invoices) {
-            if (invoice.getIdInvoice().equals(((Invoice) i).getIdInvoice()) && invoice.getInvoiceNum().equals(((Invoice) i).getInvoiceNum())) {
+            if (invoice.getInvoiceNum().equals(((Invoice) i).getInvoiceNum())) {
                 throw new Exception("Invoice already in db");
             }
         }

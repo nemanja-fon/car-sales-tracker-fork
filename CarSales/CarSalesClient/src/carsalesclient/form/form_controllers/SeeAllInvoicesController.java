@@ -81,9 +81,11 @@ public class SeeAllInvoicesController {
                     invoice.setSearchConditionValue(d);
                     List<Invoice> invoices = ClientController.getInstance().searchInvoices(invoice);
                     if (invoices.isEmpty()) {
+                        JOptionPane.showMessageDialog(invoicesTableForm, "The system cannot find invoices");
                         invoicesTableForm.getTblInvoices().setModel(new InvoicesTableModel(new ArrayList<>()));
                     }
                     else{
+                        JOptionPane.showMessageDialog(invoicesTableForm, "The system has found invoices");
                         setTableModel(new InvoicesTableModel(invoices));
                     }
                     
@@ -105,6 +107,11 @@ public class SeeAllInvoicesController {
                 }
                 Invoice invoice = ((InvoicesTableModel) invoicesTableForm.getTblInvoices().getModel()).getInvoiceAt(rowId);
                 Coordinator.getInstance().addParam(CoordinatorParamConsts.INVOICE_DETAILS, invoice);
+                if (invoice != null) {
+                    JOptionPane.showMessageDialog(invoicesTableForm, "The system has found the invoice");
+                }
+                else
+                    JOptionPane.showMessageDialog(invoicesTableForm, "The system cannot find the invoice");
                 Coordinator.getInstance().openAddInvoiceForm(AddFormMode.DETAILS_FORM);
             }
         });
